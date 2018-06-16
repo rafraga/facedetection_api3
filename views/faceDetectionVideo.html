@@ -42,9 +42,9 @@
       current_time = (Date.now() - ts)
       current_fps = faceapi.round(1000 / (Date.now() - ts))
 
-      this.result_list.push("<h6>Time (ms): " + current_time + "<br>FPS: " + current_fps + "<br>Faces: " + Object.keys(result).length + "<br>Faces info: " + JSON.stringify(result));
+      this.result_list.push("<h6><b>Time (ms):</b> " + current_time + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + Object.keys(result).length + "<br><b>Faces info:</b> " + JSON.stringify(result));
       const faceImages = await faceapi.extractFaces(input.canvases[0], result)
-      faceImages.forEach(canvas => this.result_list.push(canvas))
+      faceImages.forEach(canvas => this.result_list.push(canvas+" &nbsp;"))
       this.result_list.push("</h6><br><br>")
 
       $("#results-view").html(result_list)
