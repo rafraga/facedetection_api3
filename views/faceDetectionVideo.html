@@ -16,7 +16,7 @@
       <div class="indeterminate"></div>
     </div>
     <div style="position: relative" class="margin">
-      <video src="media/bbt.mp4" onplay="onPlay(this)" autoplay muted></video>
+      <video src="media/bbt.mp4" onplay="onPlay(this)" autoplay muted width="300"></video>
       <canvas id="overlay" />
     </div>
     <div class="row side-by-side">
@@ -38,18 +38,9 @@
         <i class="material-icons left">+</i>
       </button>
     </div>
-    <div class="row side-by-side">
-      <div class="row">
-        <label for="time">Time:</label>
-        <input disabled value="-" id="time" type="text" class="bold">
-      </div>
-      <div class="row">
-        <label for="fps">Estimated Fps:</label>
-        <input disabled value="-" id="fps" type="text" class="bold">
-      </div>
-    </div>
   </div>
   <div id="results-view"></div>
+  <div id="facesContainer"></div>
   <script>
     let minConfidence = 0.7
     let net, result
@@ -63,11 +54,6 @@
     function onDecreaseThreshold() {
       minConfidence = Math.max(faceapi.round(minConfidence - 0.1), 0.1)
       $('#minConfidence').val(minConfidence)
-    }
-
-    function displayTimeStats(timeInMs) {
-      $('#time').val(`${timeInMs} ms`)
-      $('#fps').val(`${faceapi.round(1000 / timeInMs)}`)
     }
 
      async function onPlay(videoEl) {
@@ -88,11 +74,11 @@
       current_time = (Date.now() - ts)
       current_fps = faceapi.round(1000 / (Date.now() - ts))
 
-      this.result_list.push(("Time: " + current_time + " FPS: " + current_fps + " Faces: "+(JSON.stringify(result))+"\n"))
+      this.result_list.push(("<h6>Time (ms): " + current_time + "<br>FPS: " + current_fps + "<br>Faces: "+(JSON.stringify(result))+"</h6><br><br>"))
       const faceImages = await faceapi.extractFaces(input.canvases[0], result)
       faceImages.forEach(canvas => $('#facesContainer').append(canvas))
 
-      $("#results-view").text(result_list)
+      $("#results-view").html(result_list)
       setTimeout(() => onPlay(videoEl))
     }
 
