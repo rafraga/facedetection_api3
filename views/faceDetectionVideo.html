@@ -77,6 +77,7 @@
       this.result_list.push(("<h6>Time (ms): " + current_time + "<br>FPS: " + current_fps + "<br>Faces: "+(JSON.stringify(result))+"</h6><br><br>"))
       const faceImages = await faceapi.extractFaces(input.canvases[0], result)
       faceImages.forEach(canvas => $('#facesContainer').append(canvas))
+      faceImages.forEach(result_list => $('#facesContainer').append(result_list))
 
       $("#results-view").html(result_list)
       setTimeout(() => onPlay(videoEl))
