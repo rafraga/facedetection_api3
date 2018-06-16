@@ -48,12 +48,12 @@
       this.result_list.push("</h6><br><br>")
 
       $("#results-view").html(result_list)
+      $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
       setTimeout(() => onPlay(videoEl))
     }
 
     async function run() {
       net = await initFaceDetectionNet()
-      //$('#loader').hide()
     }
 
     $(document).ready(function() {
