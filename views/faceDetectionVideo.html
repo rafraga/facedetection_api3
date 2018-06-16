@@ -10,16 +10,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </head>
 <body>
-  <div class="center-content page-container">
+  <div class="center-content page-container" style="display:block;height:80%; width:80%;background-color:#eee;overflow-y:hidden;overflow-x: hidden;margin:auto;">
     <div id="navbar"></div>
     <div style="position: relative" class="margin">
       <video src="media/bbt.mp4" onplay="onPlay(this)" autoplay muted width="500"></video>
       <canvas id="overlay" />
     </div>
+  
+    <div id="results-view" style="width:600;height:300;overflow-y:scroll" ></div>
   </div>
-  <div id="results-view" style="width:600;height:300;overflow-y:scroll" ></div>
   <script>
-    let minConfidence = 0.7
+    let minConfidence = 0.5
     let net, result
     var result_list = []
 
