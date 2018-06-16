@@ -45,9 +45,9 @@
 
       this.result_list.push("<font size='2'><h6><b>Time (ms):</b> " + current_time + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + Object.keys(result).length + "<br><b>Faces info:</b> " + JSON.stringify(result) + "</font>");
       const faceImages = await faceapi.extractFaces(input.canvases[0], result)
-      this.result_list.push("<div style='display:inline-block;margin-left:auto;margin-right: auto;width: 50%'>")
+      this.result_list.push("<div style='display:inline-block'><center>")
       faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
-      this.result_list.push("</div></h6><br><br>")
+      this.result_list.push("</center></div></h6><br><br>")
 
       if (init_var == 0.0) {
         $('#results-view').empty();
