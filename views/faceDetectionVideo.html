@@ -16,7 +16,7 @@
       <div class="indeterminate"></div>
     </div>
     <div style="position: relative" class="margin">
-      <video src="media/bbt.mp4" onplay="onPlay(this)" autoplay muted width="300"></video>
+      <video src="media/bbt.mp4" onplay="onPlay(this)" autoplay muted width="500"></video>
       <canvas id="overlay" />
     </div>
     <div class="row side-by-side">
@@ -74,11 +74,10 @@
       current_time = (Date.now() - ts)
       current_fps = faceapi.round(1000 / (Date.now() - ts))
 
-      this.result_list.push("<h6>Time (ms): " + current_time + "<br>FPS: " + current_fps + "<br>Faces: " + result['_score'])
+      this.result_list.push("<h6>Time (ms): " + current_time + "<br>FPS: " + current_fps + "<br>Faces: " + Object.keys(result).length + "<br>Faces info: " + JSON.stringify(result));
       const faceImages = await faceapi.extractFaces(input.canvases[0], result)
       faceImages.forEach(canvas => this.result_list.push(canvas))
       this.result_list.push("</h6><br><br>")
-
 
       $("#results-view").html(result_list)
       setTimeout(() => onPlay(videoEl))
