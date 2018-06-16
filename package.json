@@ -1,0 +1,30 @@
+{
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "justadudewhohacks",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "path": "^0.12.7"
+  },
+  "name": "facedetection_api",
+  "version": "1.0.0",
+  "description": "Face detection API for Project 2",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafraga/facedetection_api.git"
+  },
+  "keywords": [
+    "face",
+    "facedetection",
+    "facerecognition",
+    "face-detection"
+  ],
+  "bugs": {
+    "url": "https://github.com/rafraga/facedetection_api/issues"
+  },
+  "homepage": "https://github.com/rafraga/facedetection_api#readme"
+}
