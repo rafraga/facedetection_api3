@@ -12,16 +12,13 @@
 <body>
   <center>
   <div>
-  <div style="position:fixed;margin:auto" class="margin">
     <center>
-      <video src="media/bbt.mp4" onplay="onPlay(this)" autoplay muted width="500"></video>
-      <canvas id="overlay" />
+      <div style="margin:auto;margin-left:auto;margin-right:auto;display:block;position:fixed"><video src="media/bbt.mp4" onplay="onPlay(this)" autoplay muted width="500"></video><canvas id="overlay" /></div>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <div style="height:350px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;margin:auto" id="results-view"></div>
     </center>
   </div>
-    <center><div style="padding-top:550px;height:350px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;margin:auto" id="results-view"></div></center>
-  </div>
   </center>
-
   <script>
     let minConfidence = 0.5
     let net, result
