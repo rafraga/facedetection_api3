@@ -20,6 +20,7 @@
   </div>
   </center>
   <script>
+    var init_var = 0.0
     let minConfidence = 0.5
     let net, result
     var result_list = []
@@ -47,6 +48,11 @@
       this.result_list.push("<div style='display:inline-block;margin-left:auto;margin-right: auto;width: 50%'>")
       faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
       this.result_list.push("</div></h6><br><br>")
+
+      if (this.init_var == 0.0) {
+        $('#results-view').empty();
+        this.init_var += 1
+      }
 
       $("#results-view").html(result_list)
       $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
