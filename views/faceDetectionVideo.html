@@ -12,9 +12,6 @@
 <body>
   <div class="center-content page-container">
     <div id="navbar"></div>
-    <div class="progress" id="loader">
-      <div class="indeterminate"></div>
-    </div>
     <div style="position: relative" class="margin">
       <video src="media/bbt.mp4" onplay="onPlay(this)" autoplay muted width="500"></video>
       <canvas id="overlay" />
@@ -25,19 +22,9 @@
         <label for="minConfidence">Min Confidence:</label>
         <input disabled value="0.7" id="minConfidence" type="text" class="bold">
       </div>
-      <button
-        class="waves-effect waves-light btn"
-        onclick="onDecreaseThreshold()"
-      >
-        <i class="material-icons left">-</i>
-      </button>
-      <button
-        class="waves-effect waves-light btn"
-        onclick="onIncreaseThreshold()"
-      >
-        <i class="material-icons left">+</i>
-      </button>
     </div>
+      <button onclick="onDecreaseThreshold()"><b>-</b></button>
+      <button onclick="onIncreaseThreshold()"><b>+</b></button>
   </div>
   <div id="results-view"></div>
   <div id="facesContainer"></div>
@@ -85,7 +72,7 @@
 
     async function run() {
       net = await initFaceDetectionNet()
-      $('#loader').hide()
+      //$('#loader').hide()
     }
 
     $(document).ready(function() {
