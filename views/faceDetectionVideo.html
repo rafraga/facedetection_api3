@@ -16,15 +16,6 @@
       <video src="media/bbt.mp4" onplay="onPlay(this)" autoplay muted width="500"></video>
       <canvas id="overlay" />
     </div>
-    <div class="row side-by-side">
-      <div id="selectList"></div>
-      <div class="row">
-        <label for="minConfidence">Min Confidence:</label>
-        <input disabled value="0.7" id="minConfidence" type="text" class="bold">
-      </div>
-    </div>
-      <button onclick="onDecreaseThreshold()"><b>-</b></button>
-      <button onclick="onIncreaseThreshold()"><b>+</b></button>
   </div>
   <div id="results-view"></div>
   <div id="facesContainer"></div>
@@ -32,16 +23,6 @@
     let minConfidence = 0.7
     let net, result
     var result_list = []
-
-    function onIncreaseThreshold() {
-      minConfidence = Math.min(faceapi.round(minConfidence + 0.1), 1.0)
-      $('#minConfidence').val(minConfidence)
-    }
-
-    function onDecreaseThreshold() {
-      minConfidence = Math.max(faceapi.round(minConfidence - 0.1), 0.1)
-      $('#minConfidence').val(minConfidence)
-    }
 
      async function onPlay(videoEl) {
       if(videoEl.paused || videoEl.ended)
