@@ -10,16 +10,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </head>
 <body>
-  <div class="center-content page-container" style="position:fixed;display:block;height:800px; width:800px;background-color:#eee;overflow-y:hidden;overflow-x: hidden;margin:auto">
-    <div id="navbar"></div>
-    <div style="position:fixed" class="margin">
-      <center>
-        <video src="media/bbt.mp4" onplay="onPlay(this)" autoplay muted width="500"></video>
-        <canvas id="overlay" />
-      </center>
-    </div>
-  
-    <div id="results-view" style="width:600;height:300;overflow-y:scroll;overflow-x: hidden" ></div>
+  <div style="position:fixed" class="margin">
+    <center>
+      <video src="media/bbt.mp4" onplay="onPlay(this)" autoplay muted width="500"></video>
+      <canvas id="overlay" />
+    </center>
+  </div>
+
+  <div class="center-content page-container" style="position:fixed;display:block;height:800px; width:800px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;margin:auto">
+    <div id="results-view"></div>
   </div>
   <script>
     let minConfidence = 0.5
