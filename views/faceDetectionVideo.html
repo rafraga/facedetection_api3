@@ -104,7 +104,7 @@
       } else {
         vid.onplaying = function() {
           
-          var storage = GoogleCloudStorage({
+          var storage = new GoogleCloudStorage({
             projectId: 'FaceApp',
             keyFilename: 'FaceApp-3a969b9e55c8.json'
           })
@@ -112,6 +112,8 @@
           var BUCKET_NAME = 'my-bucket'
           // https://googlecloudplatform.github.io/google-cloud-node/#/docs/google-cloud/0.39.0/storage/bucket
           var myBucket = storage.bucket(BUCKET_NAME)
+
+
 
           // check if a file exists in bucket
           // https://googlecloudplatform.github.io/google-cloud-node/#/docs/google-cloud/0.39.0/storage/file?method=exists
