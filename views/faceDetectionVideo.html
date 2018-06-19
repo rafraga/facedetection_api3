@@ -78,7 +78,7 @@
         $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
         setTimeout(() => onPlay(videoEl))
       }
-      vid.stop()
+      vid.pause()
       return false
       $('#overlay').empty()
       $("#overlay").html("<center><h2>DONE!</h2></center>")
