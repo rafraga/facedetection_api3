@@ -30,7 +30,7 @@
     var init_var = 0.0
     let minConfidence = 0.5
     let net, result
-    var result_list = []
+    var result_list = ["empty"]
     var vid = document.getElementById('videoel')
     var video_progress = -1
 
@@ -39,13 +39,7 @@
           //document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
           //}
         if (init_var == 0.0) {
-          vid.currentTime = vid.duration - (vid.duration * 0.03)
-          this.init_var += 1.0
-        } else if (init_var == 1.0) {
-          this.video_progress = -1
-          this.init_var += 1.0
-        } else if (init_var == 2.0) {
-          vid.currentTime = 0
+          vid.currentTime = vid.duration - (vid.duration * 0.01)
           this.init_var += 1.0
         } else {
           this.init_var += 1.0
@@ -70,26 +64,33 @@
 
         current_time = (Date.now() - ts)
         current_fps = faceapi.round(1000 / (Date.now() - ts))
-
-        this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + vid.currentTime + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + Object.keys(result).length + "<br><b>Faces info:</b> " + JSON.stringify(result) + "</font>");
+        current_time_sec = vid.currentTime
+        total_faces_in_frame = Object.keys(result).length
+        faces_info = JSON.stringify(result)
         const faceImages = await faceapi.extractFaces(input.canvases[0], result)
-        this.result_list.push("<div style='display:inline-block'><center>")
-        faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
-        this.result_list.push("</center></div></h6><br><br>")
-        this.video_progress = vid.currentTime
+        
+        if (result_list == ["empty"]){
+          this.result_list = []
+        } else {
+          this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>");
+          this.result_list.push("<div style='display:inline-block'><center>")
+          faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
+          this.result_list.push("</center></div></h6><br><br>")
+          this.video_progress = vid.currentTime
 
-        if (document.contains(document.getElementById('startbutton'))) {
-              document.getElementById('startbutton').remove()
-              $('#results-view').empty()
-            }
+          if (document.contains(document.getElementById('startbutton'))) {
+                document.getElementById('startbutton').remove()
+                $('#results-view').empty()
+              }
 
-        $("#results-view").html(result_list)
-        $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
-        setTimeout(() => onPlay(videoEl))
+          $("#results-view").html(result_list)
+          $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
+          setTimeout(() => onPlay(videoEl))
+        }
       } else {
         vid.onplaying = function() {
 
-          domtoimage.toJpeg(document.getElementById('my-node'), { quality: 0.95 })
+          domtoimage.toJpeg(document.getElementById('results-view'), { quality: 0.95 })
           .then(function (dataUrl) {
               var link = document.createElement('a');
               link.download = 'my-image-name.jpeg';
@@ -100,7 +101,7 @@
           vid.pause()
           vid.remove()
           $('#spaces').empty()
-          $('#header').html("<center><h5>Results</h5></center>")
+          $('#header').html("<center><h5>Results</h5></center><br>")
           $("#results-view").attr("style","height:500px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
         }; 
       return false
