@@ -30,7 +30,7 @@
     var init_var = 0.0
     let minConfidence = 0.5
     let net, result
-    var result_list = ["empty"]
+    var result_list = ["   "]
     var vid = document.getElementById('videoel')
     var video_progress = -1
 
@@ -69,7 +69,7 @@
         faces_info = JSON.stringify(result)
         const faceImages = await faceapi.extractFaces(input.canvases[0], result)
         
-        if (result_list == ["empty"]){
+        if (result_list == ["   "]){
           vid.currentTime = 0
           this.result_list = []
         } else {
@@ -91,18 +91,19 @@
       } else {
         vid.onplaying = function() {
 
-          domtoimage.toJpeg(document.getElementById('results-view'), { quality: 0.95 })
-          .then(function (dataUrl) {
-              var link = document.createElement('a');
-              link.download = 'my-image-name.jpeg';
-              link.href = dataUrl;
-              link.click();
+          var node = document.getElementById('results-view');
+          domtoimage.toPng(node).then(function (dataUrl) {
+              var img = new Image();
+              img.src = dataUrl;
+              document.body.appendChild(img);
+          }).catch(function (error) {
+              console.error('oops, something went wrong!', error);
           });
     
           vid.pause()
           vid.remove()
-          $('#spaces').empty()
-          $('#header').html("<center><h5>Results</h5></center>")
+          $('#spaces').html("")
+          $('#header').html("<center><h6>Results</h6></center>")
           $('#spaces').html("<br><br>")
           $("#results-view").attr("style","height:500px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
         }; 
