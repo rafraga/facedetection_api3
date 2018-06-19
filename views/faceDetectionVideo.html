@@ -31,15 +31,18 @@
     var result_list = []
     var vid = document.getElementById('videoel');
 
-    function enablestart() {
+      function enablestart() {
         if (init_var == 0.0) {
           vid.currentTime = vid.duration - (vid.duration * 0.05)
-          this.init_var += 1
+          this.init_var += 1.0
+        } else if (init_var == 1.0) {
+          vid.currentTime = 0
+          this.init_var += 1.0
         } else {
-        vid.currentTime = 0
-        onPlay(vid)
-			}
-    }
+          this.init_var += 1.0
+        }
+       onPlay(vid)
+      }
      async function onPlay(videoEl) {
       if(videoEl.paused || videoEl.ended)
         return false
