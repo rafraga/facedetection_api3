@@ -15,17 +15,15 @@
   <div id="all">
     <center>
       <div id="header" style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;top: 1em">
-          <!-- <video id="videoel" src="media/bbt.mp4" oncanplay="enablestart()" preload="auto" loop playsinline autoplay muted width="350"></video> -->
           <video id="videoel" src="http://salty-plains-52394.herokuapp.com/media/video2.mp4" oncanplay="enablestart()" preload="auto" loop playsinline autoplay muted width="350"></video>
           <canvas id="overlay" />
       </div>
       <div id="spaces">
         <br><br><br><br><br><br><br><br><br>
       </div>
-      <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:5%;width:5%;top:0;bottom:0" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>
-      <!-- <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input> -->      
+      <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>      
       <br><br>
-      <div style="height:150px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br><h3><center></center></h3>
+      <div style="height:120px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br><h3><center></center></h3>
       </div>
     </center>
   </div>
@@ -40,6 +38,8 @@
     var vid = document.getElementById('videoel')
     var video_progress = -1
     var faces = []
+    var count_faces = 0
+    var max_faces = 100
 
       function enablestart() {
         //if (document.contains(document.getElementById('startbutton'))) {
@@ -83,7 +83,8 @@
           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>");
           this.result_list.push("<div style='display:inline-block'><center>")
           faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
-          faceImages.forEach(function(canvas) {return this.faces.push(canvas)})
+          this.count_faces += 1
+          faceImages.forEach(function(canvas) {if(count_faces < max_faces){return this.faces.push(canvas)}})
           this.result_list.push("</center></div></h6><br><br>")
           this.video_progress = vid.currentTime
 
@@ -107,7 +108,6 @@
                 var link = document.createElement('a');
                 link.download = 'image.jpeg';
                 link.href = dataUrl;
-                console.log(dataUrl);
                 link.click();
             });
     
@@ -116,7 +116,7 @@
           $('#spaces').html("")
           $('#header').html("<center><h5>Results</h5></center>")
           $('#spaces').html("<br>")
-          $("#results-view").attr("style","height:400px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
+          $("#results-view").attr("style","height:350px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
         }; 
       return false
       }
