@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const domtoimage = require('dom-to-image')
 const Promise = require('bluebird');
-const GoogleCloudStorage = Promise.promisifyAll(require('@google-cloud/storage'));
+var GoogleCloudStorage = Promise.promisifyAll(require('@google-cloud/storage'));
 
 const app = express()
 
