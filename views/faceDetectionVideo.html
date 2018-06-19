@@ -70,6 +70,7 @@
         const faceImages = await faceapi.extractFaces(input.canvases[0], result)
         
         if (result_list == ["empty"]){
+          vid.currentTime = 0
           this.result_list = []
         } else {
           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>");
