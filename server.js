@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const domtoimage = require('dom-to-image')
+const Promise = require('bluebird');
 
 const app = express()
 
