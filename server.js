@@ -10,6 +10,7 @@ app.use(express.static(path.join(__dirname, './public')))
 app.use(express.static(path.join(__dirname, './weights')))
 app.use(express.static(path.join(__dirname, './dist')))
 app.use(express.static(path.join(__dirname, './node_modules/axios/dist')))
+app.use(express.static(path.join(__dirname, './node_modules/dom-to-image/dist')))
 
 app.get('/', (req, res) => res.redirect('/face_detection_video'))
 app.get('/face_detection_video', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html')))
