@@ -14,7 +14,7 @@
   <div>
     <center>
       <div style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;top: 1em">
-          <video id="videoel" src="media/bbt.mp4" oncanplay="enablestart()" preload="auto" loop playsinline muted width="500"></video>
+          <video id="videoel" src="media/bbt.mp4" oncanplay="enablestart()" preload="auto" loop playsinline autoplay muted width="500"></video>
           <canvas id="overlay" /></div>
                   <!-- <video src="media/bbt.mp4" onplay="onPlay(this)" preload autoplay muted width="600"></video><canvas id="overlay" /></div> -->
       <br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -32,7 +32,6 @@
     var vid = document.getElementById('videoel');
 
     function enablestart() {
-        vid.play()
         onPlay(vid)
 			}
 
