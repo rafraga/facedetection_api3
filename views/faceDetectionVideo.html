@@ -169,6 +169,8 @@
           $('#spaces').html("")
           start_time = Math.min(this.times_list)
           end_time = Math.max(this.times_list)
+          console.log(start_time)
+          console.log(end_time)
           $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " faces found between " + parseFloat(start_time).toFixed(2) + "s and " + parseFloat(end_time).toFixed(2) + "s.</h6></center>")
           $('#spaces').html("<br><br>")
           $('#spaces2').html("<br>")
