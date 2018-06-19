@@ -104,8 +104,51 @@
       } else {
         vid.onplaying = function() {
 
-          $("#faces_view").html(faces)
+          
 
+
+          var Promise = require('bluebird');
+          
+          var GoogleCloudStorage = Promise.promisifyAll(require('@google-cloud/storage'));
+
+          var storage = GoogleCloudStorage({
+            projectId: 'FaceApp',
+            keyFilename: 'FaceApp-3a969b9e55c8.json'
+          })
+
+          var BUCKET_NAME = 'my-bucket'
+          // https://googlecloudplatform.github.io/google-cloud-node/#/docs/google-cloud/0.39.0/storage/bucket
+          var myBucket = storage.bucket(BUCKET_NAME)
+
+          // check if a file exists in bucket
+          // https://googlecloudplatform.github.io/google-cloud-node/#/docs/google-cloud/0.39.0/storage/file?method=exists
+          var file = myBucket.file('myImage.png')
+          file.existsAsync()
+            .then(exists => {
+              if (exists) {
+                // file exists in bucket
+              }
+            })
+            .catch(err => {
+              return err
+            })
+              
+              
+          // upload file to bucket
+          // https://googlecloudplatform.github.io/google-cloud-node/#/docs/google-cloud/0.39.0/storage/bucket?method=upload
+          let localFileLocation = './public/images/bbt1.jpg'
+          myBucket.uploadAsync(localFileLocation, { public: true })
+            .then(file => {
+              // file saved
+            })
+              
+          // get public url for file
+          var getPublicThumbnailUrlForItem = file_name => {
+            return `https://storage.googleapis.com/${BUCKET_NAME}/${file_name}`
+            console.log(`https://storage.googleapis.com/${BUCKET_NAME}/${file_name}`)
+          }
+
+          // //save something in the dom to a file
           // domtoimage.toJpeg(document.getElementById('faces_view'), { quality: 0.95 })
           //   .then(function (dataUrl) {
           //       var link = document.createElement('a');
@@ -114,9 +157,13 @@
           //       link.click();
           //   });
 
+
+
+
+
+
           $("#faces_view").attr("style","height:100px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 50%;text-align: center")
-          
-    
+          $("#faces_view").html(faces)
           vid.pause()
           vid.remove()
           $('#spaces').html("")
