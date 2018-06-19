@@ -17,9 +17,9 @@
           
           <video id="videoel" src="media/bbt.mp4" oncanplay="enablestart()" preload="auto" loop playsinline autoplay muted width="600"></video>
           <canvas id="overlay" /></div>
-          <input class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="onPlay('media/bbt.mp4')" id="startbutton"></input>
-        <!-- <video src="media/bbt.mp4" onplay="onPlay(this)" preload autoplay muted width="600"></video><canvas id="overlay" /></div> -->
+                  <!-- <video src="media/bbt.mp4" onplay="onPlay(this)" preload autoplay muted width="600"></video><canvas id="overlay" /></div> -->
       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <input class="btn" type="button" value="wait, loading video" disabled="disabled" id="startbutton"></input>
       <div style="height:350px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br><h3><center>LOADING</center></h3></div>
     </center>
   </div>
@@ -32,10 +32,10 @@
     var vid = document.getElementById('videoel');
 
     function enablestart() {
-					var startbutton = document.getElementById('startbutton');
-					startbutton.value = "start";
-					startbutton.disabled = null;
-				}
+        var startbutton = document.getElementById('startbutton');
+        startbutton.value = "";
+        onPlay(vid)
+			}
 
      async function onPlay(videoEl) {
       if(videoEl.paused || videoEl.ended)
