@@ -28,10 +28,11 @@
     let minConfidence = 0.5
     let net, result
     var result_list = []
-    var vid = document.getElementById('videoel');
+    var vid = document.getElementById('videoel')
+    var video_progress = -1
 
       function enablestart() {
-        console.log(vid.currentTime)
+        //console.log(vid.currentTime)
         if (init_var == 0.0) {
           vid.currentTime = vid.duration - (vid.duration * 0.03)
           this.init_var += 1.0
@@ -47,35 +48,43 @@
       if(videoEl.paused || videoEl.ended)
         return false
 
-      const input = new faceapi.NetInput(videoEl)
-      const { width, height } = input
-      const canvas = $('#overlay').get(0)
-      canvas.width = width
-      canvas.height = height
+      if (video_progress < vid.currentTime){
+        const input = new faceapi.NetInput(videoEl)
+        const { width, height } = input
+        const canvas = $('#overlay').get(0)
+        canvas.width = width
+        canvas.height = height
 
-      const ts = Date.now()
-      result = await net.locateFaces(input, minConfidence)      
-      $('#time').val(`${(Date.now() - ts)} ms`)
-      $('#fps').val(`${faceapi.round(1000 / (Date.now() - ts))}`)
+        const ts = Date.now()
+        result = await net.locateFaces(input, minConfidence)      
+        $('#time').val(`${(Date.now() - ts)} ms`)
+        $('#fps').val(`${faceapi.round(1000 / (Date.now() - ts))}`)
 
-      current_time = (Date.now() - ts)
-      current_fps = faceapi.round(1000 / (Date.now() - ts))
+        current_time = (Date.now() - ts)
+        current_fps = faceapi.round(1000 / (Date.now() - ts))
+        console.log(vid.currentTime)
 
-      if (document.contains(document.getElementById('startbutton'))) {
-            document.getElementById('startbutton').remove()
-            $('#results-view').empty()
-          }
+        if (document.contains(document.getElementById('startbutton'))) {
+              document.getElementById('startbutton').remove()
+              $('#results-view').empty()
+            }
 
-      this.result_list.push("<font size='2'><h6><b>Time (ms):</b> " + current_time + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + Object.keys(result).length + "<br><b>Faces info:</b> " + JSON.stringify(result) + "</font>");
-      const faceImages = await faceapi.extractFaces(input.canvases[0], result)
-      this.result_list.push("<div style='display:inline-block'><center>")
-      faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
-      this.result_list.push("</center></div></h6><br><br>")
+        this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + vid.currentTime + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + Object.keys(result).length + "<br><b>Faces info:</b> " + JSON.stringify(result) + "</font>");
+        const faceImages = await faceapi.extractFaces(input.canvases[0], result)
+        this.result_list.push("<div style='display:inline-block'><center>")
+        faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
+        this.result_list.push("</center></div></h6><br><br>")
+        this.video_progress = vid.currentTime
 
-      $("#results-view").html(result_list)
-      $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
-      setTimeout(() => onPlay(videoEl))
-    }
+        $("#results-view").html(result_list)
+        $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
+        setTimeout(() => onPlay(videoEl))
+      }
+      vid.stop()
+      return false
+      $('#overlay').empty()
+      $("#overlay").html("<center><h2>DONE!</h2></center>")
+     }
 
     async function run() {
       net = await initFaceDetectionNet()
