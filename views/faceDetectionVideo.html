@@ -32,10 +32,14 @@
     var vid = document.getElementById('videoel');
 
     function enablestart() {
-        vid.currentTime = vid.duration - (vid.duration * 0.05);
+        if (init_var == 0.0) {
+          vid.currentTime = vid.duration - (vid.duration * 0.05)
+          this.init_var += 1
+        } else {
+        vid.currentTime = 0
         onPlay(vid)
 			}
-
+    }
      async function onPlay(videoEl) {
       if(videoEl.paused || videoEl.ended)
         return false
@@ -55,7 +59,8 @@
       current_fps = faceapi.round(1000 / (Date.now() - ts))
 
       if (document.contains(document.getElementById('startbutton'))) {
-            document.getElementById('startbutton').remove();
+            document.getElementById('startbutton').remove()
+            $('#results-view').empty()
           }
 
       this.result_list.push("<font size='2'><h6><b>Time (ms):</b> " + current_time + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + Object.keys(result).length + "<br><b>Faces info:</b> " + JSON.stringify(result) + "</font>");
@@ -63,11 +68,6 @@
       this.result_list.push("<div style='display:inline-block'><center>")
       faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
       this.result_list.push("</center></div></h6><br><br>")
-
-      if (init_var == 0.0) {
-        $('#results-view').empty();
-        this.init_var += 1
-      }
 
       $("#results-view").html(result_list)
       $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
