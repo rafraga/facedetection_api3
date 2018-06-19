@@ -19,7 +19,7 @@
       <br><br><br><br><br><br><br><br><br><br><br>
       <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width:1000px;top: 1em" class="btn" type="button" value="PLEASE WAIT" disabled="disabled" id="startbutton"></input>
       <br><br>
-      <div style="height:250px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br><h3><center>LOADING VIDEO</center></h3></div>
+      <div style="height:150px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br><h3><center>LOADING VIDEO</center></h3></div>
     </center>
   </div>
   </center>
@@ -32,7 +32,7 @@
 
       function enablestart() {
         if (init_var == 0.0) {
-          vid.currentTime = vid.duration - (vid.duration * 0.01)
+          vid.currentTime = vid.duration - (vid.duration * 0.05)
           this.init_var += 1.0
         } else if (init_var == 1.0) {
           vid.currentTime = 0
