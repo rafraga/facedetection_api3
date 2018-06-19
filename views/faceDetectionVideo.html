@@ -31,6 +31,7 @@
     var vid = document.getElementById('videoel');
 
       function enablestart() {
+        console.log(vid.currentTime)
         if (init_var == 0.0) {
           vid.currentTime = vid.duration - (vid.duration * 0.03)
           this.init_var += 1.0
