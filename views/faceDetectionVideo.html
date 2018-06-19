@@ -33,7 +33,7 @@
 
       function enablestart() {
         if (init_var == 0.0) {
-          vid.currentTime = vid.duration - (vid.duration * 0.05)
+          vid.currentTime = vid.duration - (vid.duration * 0.01)
           this.init_var += 1.0
         } else if (init_var == 1.0) {
           vid.currentTime = 0
