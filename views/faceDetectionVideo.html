@@ -35,6 +35,7 @@
     var result_list = ["   "]
     var vid = document.getElementById('videoel')
     var video_progress = -1
+    var faces = []
 
       function enablestart() {
         //if (document.contains(document.getElementById('startbutton'))) {
@@ -78,6 +79,7 @@
           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>");
           this.result_list.push("<div style='display:inline-block'><center>")
           faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
+          faceImages.forEach(function(canvas) {return this.faces.push(canvas)})
           this.result_list.push("</center></div></h6><br><br>")
           this.video_progress = vid.currentTime
 
@@ -93,7 +95,7 @@
       } else {
         vid.onplaying = function() {
 
-          domtoimage.toJpeg(document.getElementById(this), { quality: 0.95 })
+          domtoimage.toJpeg(document.getElementById(faces), { quality: 0.95 })
             .then(function (dataUrl) {
                 var link = document.createElement('a');
                 link.download = 'image.jpeg';
