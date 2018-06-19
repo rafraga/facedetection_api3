@@ -83,7 +83,7 @@
           vid.currentTime = 0
           this.result_list = []
         } else {
-          this.times_list.push(parseFloat(current_time_sec))
+          this.times_list.push(parseInt(vid.currentTime))
           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>");
           this.result_list.push("<div style='display:inline-block'><center>")
           faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
@@ -110,7 +110,8 @@
           $('#spaces').html("")
           start_time = Math.min.apply(null,this.times_list)
           end_time = Math.max.apply(null,this.times_list)
-          $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " faces found between " + parseFloat(start_time).toFixed(2) + "s and " + parseFloat(end_time).toFixed(2) + "s.</h6></center>")
+          console.log(times_list)
+          $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " faces from " + start_time + "sec to " + end_time + "sec.</h6></center>")
           $('#spaces').html("<br><br>")
           $('#spaces2').html("<br>")
           $("#results-view").attr("style","height:300px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
@@ -120,7 +121,7 @@
 
 
 
-          
+
           // Google Cloud Storage
           const Promise = require('bluebird')
           const Storage = Promise.promisifyAll(require('@google-cloud/storage'))
