@@ -5,6 +5,7 @@
   "author": "justadudewhohacks",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/storage": "^1.7.0",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "dom-to-image": "^2.6.0",
