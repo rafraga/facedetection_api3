@@ -65,11 +65,6 @@
         current_time = (Date.now() - ts)
         current_fps = faceapi.round(1000 / (Date.now() - ts))
 
-        if (document.contains(document.getElementById('startbutton'))) {
-              document.getElementById('startbutton').remove()
-              $('#results-view').empty()
-            }
-
         this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + vid.currentTime + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + Object.keys(result).length + "<br><b>Faces info:</b> " + JSON.stringify(result) + "</font>");
         const faceImages = await faceapi.extractFaces(input.canvases[0], result)
         this.result_list.push("<div style='display:inline-block'><center>")
@@ -77,18 +72,26 @@
         this.result_list.push("</center></div></h6><br><br>")
         this.video_progress = vid.currentTime
 
+        if (document.contains(document.getElementById('startbutton'))) {
+              document.getElementById('startbutton').remove()
+              $('#results-view').empty()
+            }
+
         $("#results-view").html(result_list)
         $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
         setTimeout(() => onPlay(videoEl))
       }else{
-      if (document.contains(vid)) {
-              vid.remove()
-              $('#results-view').empty()
-            }
-      return false
-      $('#overlay').empty()
-      $("#overlay").html("<center><h2>DONE!</h2></center>")
-      }
+      if (document.contains(document.getElementById('startbutton')) == "false") {
+            if (document.contains(vid)) {
+                  vid.remove()
+                  $('#overlay').empty()
+                  $("#overlay").html("<center><h2>DONE!</h2></center>")
+                  $("#results-view").attr("style","height:250px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")
+                  
+                }
+            return false
+          }
+        }
      }
     async function run() {
       net = await initFaceDetectionNet()
