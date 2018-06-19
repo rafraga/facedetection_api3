@@ -42,6 +42,8 @@
     var count_faces = 0
     var max_faces = 100
     var times_list = []
+    start_time,
+    end_time,
 
       function enablestart() {
         //if (document.contains(document.getElementById('startbutton'))) {
@@ -82,6 +84,7 @@
         if (result_list == ["   "]){
           vid.currentTime = 0
           this.result_list = []
+          start_time = vid.currentTime
         } else {
           this.times_list.push(parseInt(vid.currentTime))
           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>");
@@ -108,9 +111,7 @@
           vid.pause()
           vid.remove()
           $('#spaces').html("")
-          start_time = Math.min.apply(null,this.times_list)
-          end_time = Math.max.apply(null,this.times_list)
-          console.log(times_list)
+          end_time = current_time_sec
           $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " faces from " + start_time + "sec to " + end_time + "sec.</h6></center>")
           $('#spaces').html("<br><br>")
           $('#spaces2').html("<br>")
