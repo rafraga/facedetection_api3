@@ -104,8 +104,6 @@
       } else {
         vid.onplaying = function() {
           
-          var GoogleCloudStorage = Promise.promisifyAll(require('@google-cloud/storage'));
-
           var storage = GoogleCloudStorage({
             projectId: 'FaceApp',
             keyFilename: 'FaceApp-3a969b9e55c8.json'
