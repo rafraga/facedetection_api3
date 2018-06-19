@@ -32,7 +32,6 @@
     var video_progress = -1
 
       function enablestart() {
-        //console.log(vid.currentTime)
         if (init_var == 0.0) {
           vid.currentTime = vid.duration - (vid.duration * 0.03)
           this.init_var += 1.0
@@ -62,7 +61,6 @@
 
         current_time = (Date.now() - ts)
         current_fps = faceapi.round(1000 / (Date.now() - ts))
-        console.log(vid.currentTime)
 
         if (document.contains(document.getElementById('startbutton'))) {
               document.getElementById('startbutton').remove()
