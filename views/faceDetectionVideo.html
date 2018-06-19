@@ -41,13 +41,14 @@
     var faces = []
     var count_faces = 0
     var max_faces = 100
+    var times = []
 
       function enablestart() {
         //if (document.contains(document.getElementById('startbutton'))) {
           //document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
           //}
         if (init_var == 0.0) {
-          vid.currentTime = vid.duration - (vid.duration * 0.01)
+          vid.currentTime = vid.duration - (vid.duration * 0.03)
           this.init_var += 1.0
         } else {
           this.init_var += 1.0
@@ -81,11 +82,13 @@
           vid.currentTime = 0
           this.result_list = []
         } else {
+          this.times.push(current_time_sec)
           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>");
           this.result_list.push("<div style='display:inline-block'><center>")
           faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
           this.count_faces += 1
-          faceImages.forEach(function(canvas) {if(count_faces < max_faces){return this.faces.push(canvas)}})
+          //faceImages.forEach(function(canvas) {if(count_faces < max_faces){return this.faces.push(canvas)}})
+          faceImages.forEach(function(canvas) {return this.faces.push(canvas)})
           this.result_list.push("</center></div></h6><br><br>")
           this.video_progress = vid.currentTime
 
@@ -103,13 +106,13 @@
 
           $("#faces_view").html(faces)
 
-          domtoimage.toJpeg(document.getElementById('faces_view'), { quality: 0.95 })
-            .then(function (dataUrl) {
-                var link = document.createElement('a');
-                link.download = 'image.jpeg';
-                link.href = dataUrl;
-                link.click();
-            });
+          // domtoimage.toJpeg(document.getElementById('faces_view'), { quality: 0.95 })
+          //   .then(function (dataUrl) {
+          //       var link = document.createElement('a');
+          //       link.download = 'image.jpeg';
+          //       link.href = dataUrl;
+          //       link.click();
+          //   });
 
           $("#faces_view").attr("style","height:100px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 50%;text-align: center")
           
@@ -117,10 +120,12 @@
           vid.pause()
           vid.remove()
           $('#spaces').html("")
-          $('#header').html("<center><h5>Results</h5></center>")
+          start_time = Math.min(this.times)
+          end_time = Math.max(this.times)
+          $('#header').html("<center><h5>Results</h5><br><h6>" + count_faces + " faces found between " + start_time.toFixed(2) + "s and " + end_time.toFixed(2) + "s.</h6></center>")
           $('#spaces').html("<br>")
-          $('#spaces2').html("<br>")
-          $("#results-view").attr("style","height:350px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
+          $('#spaces2').html("<br><br>")
+          $("#results-view").attr("style","height:300px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
         }; 
       return false
       }
