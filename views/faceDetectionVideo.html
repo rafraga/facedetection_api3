@@ -36,6 +36,9 @@
           vid.currentTime = vid.duration - (vid.duration * 0.03)
           this.init_var += 1.0
         } else if (init_var == 1.0) {
+          this.video_progress = -1
+          this.init_var += 1.0
+        } else if (init_var == 2.0) {
           vid.currentTime = 0
           this.init_var += 1.0
         } else {
@@ -77,13 +80,16 @@
         $("#results-view").html(result_list)
         $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
         setTimeout(() => onPlay(videoEl))
-      }
-      vid.pause()
+      }else{
+      if (document.contains(vid)) {
+              vid.remove()
+              $('#results-view').empty()
+            }
       return false
       $('#overlay').empty()
       $("#overlay").html("<center><h2>DONE!</h2></center>")
+      }
      }
-
     async function run() {
       net = await initFaceDetectionNet()
     }
