@@ -30,7 +30,7 @@
     </center>
   </div>
   </center>
-  <div id="faces_view" style="height:100px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 50%;text-align: center">
+  <div id="faces_view">
   </div>
   <script>
     var init_var = 0.0
@@ -99,6 +99,7 @@
       } else {
         vid.onplaying = function() {
 
+          $("#faces_view").attr("style","height:100px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 50%;text-align: center")
           $("#faces_view").html(faces)
 
           domtoimage.toJpeg(document.getElementById('faces_view'), { quality: 0.95 })
