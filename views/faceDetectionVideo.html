@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="./node_modules/dom-to-image/dist/dom-to-image.min.js" />
 </head>
 <body>
   <center>
@@ -30,6 +31,7 @@
     var result_list = []
     var vid = document.getElementById('videoel')
     var video_progress = -1
+    var domtoimage = require('dom-to-image')
 
       function enablestart() {
         //if (document.contains(document.getElementById('startbutton'))) {
@@ -85,13 +87,22 @@
         setTimeout(() => onPlay(videoEl))
       } else {
         vid.onplaying = function() {
+
+          domtoimage.toJpeg(document.getElementById('my-node'), { quality: 0.95 })
+          .then(function (dataUrl) {
+              var link = document.createElement('a');
+              link.download = 'my-image-name.jpeg';
+              link.href = dataUrl;
+              link.click();
+          });
+    
           vid.pause()
           vid.remove()
           $('#overlay').empty()
           $("#overlay").html("<center><h2>DONE!</h2></center>")
           $("#results-view").attr("style","height:250px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
         }; 
-        return false
+      return false
       }
     }
     async function run() {
