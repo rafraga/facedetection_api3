@@ -32,6 +32,7 @@
     var vid = document.getElementById('videoel');
 
     function enablestart() {
+        vid.currentTime = vid.duration - (vid.duration * 0.05);
         onPlay(vid)
 			}
 
