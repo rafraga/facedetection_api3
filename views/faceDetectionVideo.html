@@ -18,7 +18,7 @@
           <canvas id="overlay" /></div>
                   <!-- <video src="media/bbt.mp4" onplay="onPlay(this)" preload autoplay muted width="600"></video><canvas id="overlay" /></div> -->
       <br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width:500px;top: 1em" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>
+      <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width:1000px;top: 1em" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>
       <br><br>
       <div style="height:350px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br><h3><center>LOADING</center></h3></div>
     </center>
@@ -55,6 +55,10 @@
 
       var startbutton = document.getElementById('startbutton')
       startbutton.remove()
+
+      if (document.contains(document.getElementById('startbutton'))) {
+            document.getElementById('startbutton').remove();
+          }
 
       this.result_list.push("<font size='2'><h6><b>Time (ms):</b> " + current_time + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + Object.keys(result).length + "<br><b>Faces info:</b> " + JSON.stringify(result) + "</font>");
       const faceImages = await faceapi.extractFaces(input.canvases[0], result)
