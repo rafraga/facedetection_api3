@@ -17,7 +17,7 @@
           <video id="videoel" src="media/bbt.mp4" oncanplay="enablestart()" preload="auto" loop playsinline autoplay muted width="350"></video>
           <canvas id="overlay" /></div>
       <br><br><br><br><br><br><br><br><br>
-      <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top: 1em" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>
+      <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>
       <br><br>
       <div style="height:150px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br><h3><center></center></h3></div>
     </center>
@@ -32,6 +32,9 @@
     var video_progress = -1
 
       function enablestart() {
+        if (document.contains(document.getElementById('startbutton'))) {
+          document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
+          }
         if (init_var == 0.0) {
           vid.currentTime = vid.duration - (vid.duration * 0.03)
           this.init_var += 1.0
