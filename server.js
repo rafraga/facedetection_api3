@@ -27,8 +27,7 @@ app.use(express.static(path.join(__dirname, './node_modules/dom-to-image/dist'))
 
 app.get('/:url', function(req, res) {
   var url_address = req.params.url;
-  res.render(path.join(viewsDir, 'faceDetectionVideo.html'), {url_address:url_address})
-  res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html'))
+  res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html'),{url_address:url_address})
 });
 
 
