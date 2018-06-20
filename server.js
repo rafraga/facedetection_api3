@@ -14,6 +14,9 @@ app.use(express.static(path.join(__dirname, './node_modules/dom-to-image/dist'))
 app.get('/', (req, res) => res.redirect('/face_detection_video'))
 app.get('/face_detection_video', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html')))
 
+app.get('/dev', (req, res) => res.redirect('/face_detection_video_dev'))
+app.get('/face_detection_video_dev', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo_dev01.html')))
+
 
 app.listen(process.env.PORT || 3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
