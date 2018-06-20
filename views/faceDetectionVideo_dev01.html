@@ -38,10 +38,7 @@
   console.log(queryURL)
   $.ajax({
     url: queryURL,
-    method: "GET",
-    beforeSend: function (x) {
-    x.setRequestHeader("X-Requested-With", "XMLHttpRequest")}    
-  }).then(function(response) {
+    method: "GET",}).then(function(response) {
     for(var i in response){
       if(response[i].quality == "medium"){
         if(String(response[i].type).split(";")[0] == "video/mp4"){
