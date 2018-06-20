@@ -76,7 +76,7 @@
         current_time_sec = vid.currentTime
         print_process = parseInt(parseFloat(( vid.currentTime - vid.duration / vid.duration ) ).toFixed(0))
         if (print_process < 100) {
-          $('#faces_view').html('<center><h6>' + print_process + '' +'%</h6></center>')
+          $('#faces_view').html('<center><h5>Processing: ' + print_process + '' +'%</h5></center>')
         }else{
           $('#faces_view').html('')
         }
