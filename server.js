@@ -11,12 +11,6 @@ app.all('/', function(req, res, next) {
   next();
  });
 
- app.all('/face_detection_video', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
- });
-
  app.all('/face_detection_video_dev', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -39,8 +33,7 @@ app.post("/:url", function(req, res) {
 })
 
 
-app.get('/:url', (req, res) => res.redirect('/face_detection_video'))
-app.get('/face_detection_video', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html')))
+app.get('/:url', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html')))
 
 app.get('/dev', (req, res) => res.redirect('/face_detection_video_dev'))
 app.get('/face_detection_video_dev', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo_dev01.html')))
