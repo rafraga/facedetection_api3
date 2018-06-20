@@ -30,7 +30,16 @@ app.use(express.static(path.join(__dirname, './dist')))
 app.use(express.static(path.join(__dirname, './node_modules/axios/dist')))
 app.use(express.static(path.join(__dirname, './node_modules/dom-to-image/dist')))
 
-app.get('/', (req, res) => res.redirect('/face_detection_video'))
+
+
+
+app.post("/:url", function(req, res) {  
+  url_link = req.params.url
+  return url_link
+})
+
+
+app.get('/:url', (req, res) => res.redirect('/face_detection_video'))
 app.get('/face_detection_video', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html')))
 
 app.get('/dev', (req, res) => res.redirect('/face_detection_video_dev'))
