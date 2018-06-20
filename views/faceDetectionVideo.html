@@ -15,8 +15,8 @@
   <div id="all">
     <center>
       <div id="header" style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;top: 1em">
-          <video id="videoel" src="http://salty-plains-52394.herokuapp.com/media/video2.mp4" oncanplay="enablestart()" preload="auto" loop playsinline autoplay muted width="350"></video>
-          <canvas id="overlay" />
+      <div id="video_div"></div>
+        <canvas id="overlay" />
       </div>
       <div id="spaces">
         <br><br><br><br><br><br><br><br><br>
@@ -32,6 +32,8 @@
   <div id="faces_view">
   </div>
   <script>
+    var video_link = "http://salty-plains-52394.herokuapp.com/media/video2.mp4"
+    $('#video_div').html("<video id='videoel' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
     var init_var = 0.0
     let minConfidence = 0.5
     let net, result
@@ -42,7 +44,6 @@
     var count_faces = 0
     var max_faces = 100
     var times_list = []
-
       function enablestart() {
         //if (document.contains(document.getElementById('startbutton'))) {
           //document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
@@ -67,7 +68,7 @@
         canvas.height = height
 
         const ts = Date.now()
-        result = await net.locateFaces(input, minConfidence)      
+        result = await net.locateFaces(input, minConfidence) 
         $('#time').val(`${(Date.now() - ts)} ms`)
         $('#fps').val(`${faceapi.round(1000 / (Date.now() - ts))}`)
 
@@ -76,7 +77,7 @@
         current_time_sec = vid.currentTime
         print_process = parseInt(parseFloat(((vid.duration-(((vid.duration - current_time_sec) / vid.duration)*vid.duration))/vid.duration)*100).toFixed(0))
         if (print_process < 100) {
-          $('#faces_view').html('<center><h5>Processing video: ' + print_process + '' +'%</h5></center>')
+          $('#faces_view').html('<center><h5>Processing video: ' + print_process + '' +'%</h5><br><h6>Development version 0.01</h6></center>')
         }else{
           $('#faces_view').html('')
         }
