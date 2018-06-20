@@ -68,7 +68,8 @@
         canvas.height = height
 
         const ts = Date.now()
-        result = await net.locateFaces(input, minConfidence)      
+        result = await net.locateFaces(input, minConfidence)
+        console.log(vid.currentTime)      
         $('#time').val(`${(Date.now() - ts)} ms`)
         $('#fps').val(`${faceapi.round(1000 / (Date.now() - ts))}`)
 
