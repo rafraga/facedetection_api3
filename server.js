@@ -2,7 +2,6 @@ const express = require('express')
 const path = require('path')
 // const domtoimage = require('dom-to-image')
 const app = express()
-
 const viewsDir = path.join(__dirname, 'views')
 
 app.all('/', function(req, res, next) {
@@ -24,16 +23,13 @@ app.use(express.static(path.join(__dirname, './dist')))
 app.use(express.static(path.join(__dirname, './node_modules/axios/dist')))
 app.use(express.static(path.join(__dirname, './node_modules/dom-to-image/dist')))
 
-
 app.get('/:url', function(req, res) {
-  var url_address = req.params.url;
-  res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html'),{url_address:url_address})
+  res.send({variable: "blablabla"})
+  res.sendFile(path.join(viewsDir, 'faceDetectionVideo_dev01.html'))
 });
-
 
 app.get('/dev', (req, res) => res.redirect('/face_detection_video_dev'))
 app.get('/face_detection_video_dev', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo_dev01.html')))
-
 
 app.listen(process.env.PORT || 3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
