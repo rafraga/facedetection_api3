@@ -100,7 +100,7 @@
           this.times_list.push(parseInt(vid.currentTime))
           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>")
           this.result_list.push("<div style='display:inline-block'><center>")
-          this.results_data.push((current_time_sec,current_fps,total_faces_in_frame,faces_info))
+          this.results_data.push((current_time_sec+";"+current_fps+";"+total_faces_in_frame+";"+faces_info))
           faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
           //faceImages.forEach(function(canvas) {if(count_faces < max_faces){return this.faces.push(canvas)}})
           faceImages.forEach(function(canvas) {return this.faces.push(canvas)})
