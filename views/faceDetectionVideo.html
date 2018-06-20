@@ -74,7 +74,8 @@
         current_time = (Date.now() - ts)
         current_fps = faceapi.round(1000 / (Date.now() - ts))
         current_time_sec = vid.currentTime
-        print_process = parseInt(parseFloat(vid.duration-(vid.duration - current_time_sec / vid.duration)*100).toFixed(0))
+        console.log(vid.duration, current_time_sec)
+        print_process = parseInt(parseFloat(vid.duration-(((vid.duration - current_time_sec) / vid.duration)*vid.duration)).toFixed(0))
         if (print_process < 100) {
           $('#faces_view').html('<center><h5>Processing video: ' + print_process + '' +'%</h5></center>')
         }else{
