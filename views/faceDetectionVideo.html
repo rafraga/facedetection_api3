@@ -35,7 +35,7 @@
     var init_var = 0.0
     let minConfidence = 0.5
     let net, result
-    var result_list = ["   "]
+    var result_list = "none"
     var vid = document.getElementById('videoel')
     var video_progress = -1
     var faces = []
@@ -79,7 +79,7 @@
         faces_info = JSON.stringify(result)
         const faceImages = await faceapi.extractFaces(input.canvases[0], result)
         
-        if (result_list == ["   "]){
+        if (result_list == "none"){
           vid.currentTime = 0
           this.result_list = []
           start_time = vid.currentTime
