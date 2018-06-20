@@ -28,12 +28,13 @@ app.use(express.static(path.join(__dirname, './node_modules/dom-to-image/dist'))
 
 
 app.post("/:url", function(req, res) {  
-  url_link = req.params.url
-  return url_link
+  res.send(req.params.url)
 })
 
-
-app.get('/:url', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html')))
+app.get("/:url", function(req, res) {
+  const foo = req.params.url
+  res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html'))
+})
 
 app.get('/dev', (req, res) => res.redirect('/face_detection_video_dev'))
 app.get('/face_detection_video_dev', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo_dev01.html')))
