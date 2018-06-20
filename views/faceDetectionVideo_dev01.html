@@ -32,6 +32,8 @@
   <div id="faces_view">
   </div>
   <script>
+    var video_link = "http://mirrors.standaloneinstaller.com/video-sample/lion-sample.mp4"
+    $('#video_div').html("<video id='videoel' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
     var init_var = 0.0
     let minConfidence = 0.5
     let net, result
@@ -42,9 +44,6 @@
     var count_faces = 0
     var max_faces = 100
     var times_list = []
-    var video_link = "http://mirrors.standaloneinstaller.com/video-sample/lion-sample.mp4"
-    $('#video_vid').html("<video id='videoel' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
-
       function enablestart() {
         //if (document.contains(document.getElementById('startbutton'))) {
           //document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
