@@ -21,7 +21,7 @@
       <div id="spaces">
         <br><br><br><br><br><br><br><br><br>
       </div>
-      <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>      
+      <!-- <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>       -->
       <br><br>
       <div style="height:120px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br><h3><center></center></h3>
       </div>
@@ -100,7 +100,7 @@
           this.times_list.push(parseInt(vid.currentTime))
           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>")
           this.result_list.push("<div style='display:inline-block'><center>")
-          this.results_data.push((current_time_sec,current_fps,total_faces_in_frame,faces_info))
+          this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame+";"+faces_info))
           faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
           //faceImages.forEach(function(canvas) {if(count_faces < max_faces){return this.faces.push(canvas)}})
           faceImages.forEach(function(canvas) {return this.faces.push(canvas)})
@@ -128,6 +128,7 @@
           $('#spaces').html("<br><br>")
           $('#spaces2').html("<br>")
           $("#results-view").attr("style","height:300px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
+          this.results_data.push(("total_faces_in_video:"+count_faces))
           console.log(results_data) // results that will go to the database
           // //save something in the dom to a file
           // domtoimage.toJpeg(document.getElementById('faces_view'), { quality: 0.95 })
