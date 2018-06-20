@@ -37,7 +37,6 @@
   $('#download_extension').html("<center><h6>Requires <a href='https://www.google.com/chrome/?brand=CHBD&gclid=EAIaIQobChMIitySgO7h2wIVDL7ACh0UJwfkEAAYASAAEgJ_APD_BwE&gclsrc=aw.ds&dclid=COHHoILu4dsCFRGIYgodxFMLMw'>Google Chrome</a> browser and <a href='https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en'>Allow-Control-Allow-Origin: *</a> extension</h6></center>")
   var input_url_html = "https://www.youtube.com/watch?v=bPneXZzizqc" //sample youtube video
   var queryURL = "https://you-link.herokuapp.com/?url=" + input_url_html
-  console.log(queryURL)
   $.ajax({
     url: queryURL,
     dataType: "jsonp",
