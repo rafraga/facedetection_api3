@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const domtoimage = require('dom-to-image')
+// const domtoimage = require('dom-to-image')
 const app = express()
 
 const viewsDir = path.join(__dirname, 'views')

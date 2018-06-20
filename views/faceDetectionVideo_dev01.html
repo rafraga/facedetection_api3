@@ -4,7 +4,7 @@
   <script src="face-api.js"></script>
   <script src="axios.min.js"></script>
   <script src="commons.js"></script>
-  <script src="dom-to-image.min.js"></script>
+  <!-- <script src="dom-to-image.min.js"></script> -->
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -16,7 +16,8 @@
     <center>
       <div id="download_extension"></div>
       <div id="header" style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;top: 1em">
-      <div id="video_div"></div>
+      <br>
+        <div id="video_div"></div>
         <canvas id="overlay" />
       </div>
       <div id="spaces">
@@ -39,7 +40,9 @@
   console.log(queryURL)
   $.ajax({
     url: queryURL,
+    dataType: "jsonp",
     method: "GET",}).then(function(response) {
+      console.log(response)
     for(var i in response){
       if(response[i].quality == "medium"){
         if(String(response[i].type).split(";")[0] == "video/mp4"){
