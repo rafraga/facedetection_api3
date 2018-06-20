@@ -39,7 +39,7 @@
     url: queryURL,
     method: "GET",
     beforeSend: function (x) {
-    x.setRequestHeader("x-requested-with, x-requested-by", 'XMLHttpRequest')}    
+    x.setRequestHeader("X-Requested-With", "XMLHttpRequest")}    
   }).then(function(response) {
     for(var i in response){
       if(response[i].quality == "medium"){
