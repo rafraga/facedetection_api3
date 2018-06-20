@@ -39,9 +39,7 @@
   var queryURL = "https://you-link.herokuapp.com/?url=" + input_url_html
   $.ajax({
     url: queryURL,
-    dataType: "jsonp",
     method: "GET",}).then(function(response) {
-      console.log(response)
     for(var i in response){
       if(response[i].quality == "medium"){
         if(String(response[i].type).split(";")[0] == "video/mp4"){
