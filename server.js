@@ -27,11 +27,6 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html'))
 });
 
-app.get('/:url', function(req, res) {
-  res.send(req.params.url)
-  res.redirect('/')
-});
-
 app.get('/dev', (req, res) => res.redirect('/face_detection_video_dev'))
 app.get('/face_detection_video_dev', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo_dev01.html')))
 
