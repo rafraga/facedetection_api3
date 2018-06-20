@@ -14,8 +14,9 @@
   <center>
   <div id="all">
     <center>
-      <div id="input_div">
-        <h5><input style="position: top;right: 0;left: 0;margin-right: auto;margin-left: auto;height: 1em;text-align:center;top: 2em" id="video_link_input" value="http://salty-plains-52394.herokuapp.com/media/video2.mp4"><div id='submit_button'><button>Go!</button></div></h5>
+      <div id="input_div">    
+      <h5><input style="position: top;right: 0;left: 0;margin-right: auto;margin-left: auto;height: 1em;text-align:center;top: 2em" id="video_link_input" value="https:\/\/r2---sn-p5qs7ned.googlevideo.com\/videoplayback?mn=sn-p5qs7ned%2Csn-vgqsrnez&mm=31%2C26&id=o-AK19bdNAg3tUzrvq-4DdzgWxD7o6CM-CIcTPrMWVuoUa&pl=15&mv=m&ipbits=0&ms=au%2Conr&ei=zdopW82FA8yn8gTk0IrgCg&ip=54.162.123.71&source=youtube&c=WEB&fvip=2&lmt=1522957367267598&dur=244.273&expire=1529491245&clen=6759799&key=yt6&mime=video%2F3gpp&gir=yes&initcwndbps=4985000&requiressl=yes&signature=BE61E3267453295389A41B4E3D735A82E164380B.774710649025CC2859DAB79CF58F184320F0EC14&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Crequiressl%2Csource%2Cexpire&itag=36&mt=1529469521&fexp=23709359"><div id='submit_button'><button>Go!</button></div></h5>
+      <!-- <h5><input style="position: top;right: 0;left: 0;margin-right: auto;margin-left: auto;height: 1em;text-align:center;top: 2em" id="video_link_input" value="http://salty-plains-52394.herokuapp.com/media/video2.mp4"><div id='submit_button'><button>Go!</button></div></h5> -->
       </div>
       <div id="header" style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;top: 1em">
       <div id="video_div"></div>
@@ -39,8 +40,7 @@
       $('#startbutton').val("PLEASE WAIT - LOADING VIDEO")
       $('#startbutton').attr("style","position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0")
       $('#input_div').empty()
-      var video_link = "https:\/\/r2---sn-p5qs7ned.googlevideo.com\/videoplayback?mn=sn-p5qs7ned%2Csn-vgqsrnez&mm=31%2C26&id=o-AK19bdNAg3tUzrvq-4DdzgWxD7o6CM-CIcTPrMWVuoUa&pl=15&mv=m&ipbits=0&ms=au%2Conr&ei=zdopW82FA8yn8gTk0IrgCg&ip=54.162.123.71&source=youtube&c=WEB&fvip=2&lmt=1522957367267598&dur=244.273&expire=1529491245&clen=6759799&key=yt6&mime=video%2F3gpp&gir=yes&initcwndbps=4985000&requiressl=yes&signature=BE61E3267453295389A41B4E3D735A82E164380B.774710649025CC2859DAB79CF58F184320F0EC14&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Crequiressl%2Csource%2Cexpire&itag=36&mt=1529469521&fexp=23709359"
-      //var video_link = $('#video_link_input').val()
+      var video_link = $('#video_link_input').val()
       $('#video_div').html("<video id='videoel' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
       var init_var = 0.0
       let minConfidence = 0.5
