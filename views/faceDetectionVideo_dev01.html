@@ -35,6 +35,7 @@
 
   var input_url_html = "https://www.youtube.com/watch?v=bPneXZzizqc" //sample youtube video
   var queryURL = "https://you-link.herokuapp.com/?url=" + input_url_html
+  console.log(queryURL)
   $.ajax({
     url: queryURL,
     method: "GET",
@@ -45,6 +46,8 @@
       if(response[i].quality == "medium"){
         if(String(response[i].type).split(";")[0] == "video/mp4"){
           var video_link = String("https://cors.now.sh/"+response[i].url)
+
+          //example of full working link: https://cors.now.sh/https://r4---sn-p5qlsnz6.googlevideo.com\/videoplayback?key=yt6&ip=54.162.123.71&fvip=4&ipbits=0&ei=4A8qW4SLMon78gTJ84eQBA&id=o-AGyh8Ee512iwcea2VIdHy9X5hv6ulbDA-lhMTdgp0m3c&c=WEB&initcwndbps=8345000&ratebypass=yes&signature=D4B5C7A5A042C29E4FE51CBEDE2CEF631DC6EC2C.76FE0BF1B5EB3E2C8331AD154DE017C507A18F76&requiressl=yes&pl=15&source=youtube&mime=video%2Fwebm&itag=43&expire=1529504832&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&fexp=23709359&mm=31%2C26&mn=sn-p5qlsnz6%2Csn-vgqsdn7s&dur=0.000&gir=yes&lmt=1424006235983402&clen=6206886&mt=1529483149&mv=m&ms=au%2Conr
           console.log(response[i].url)
           console.log(video_link)
 
