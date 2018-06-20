@@ -10,7 +10,8 @@
     "bluebird": "^3.5.1",
     "dom-to-image": "^2.6.0",
     "express": "^4.16.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "require": "^2.4.20"
   },
   "name": "facedetection_api",
   "version": "1.0.0",

@@ -74,7 +74,12 @@
         current_time = (Date.now() - ts)
         current_fps = faceapi.round(1000 / (Date.now() - ts))
         current_time_sec = vid.currentTime
-        $('#faces_view').html('<center><h6>' + parseFloat(( vid.currentTime - vid.duration / vid.duration ) * 100 ).toFixed(2) + '' +'%</h6></center>')
+        print_process = parseInt(parseFloat(( vid.currentTime - vid.duration / vid.duration ) ).toFixed(0))
+        if (print_process < 100) {
+          $('#faces_view').html('<center><h6>' + print_process + '' +'%</h6></center>')
+        }else{
+          $('#faces_view').html('')
+        }
         total_faces_in_frame = Object.keys(result).length
         this.count_faces += total_faces_in_frame
         faces_info = JSON.stringify(result)
@@ -123,6 +128,7 @@
 
 
           // Google Cloud Storage
+          const Promise = require('bluebird')
           const Storage = Promise.promisifyAll(require('@google-cloud/storage'))
           //const Storage = require('@google-cloud/storage')
           const storage = new Storage({
