@@ -42,6 +42,7 @@
     let net, result
     var result_list = "none"
     var vid = document.getElementById('videoel')
+    vid.setAttribute('crossorigin', 'anonymous')
     var video_progress = -1
     var faces = []
     var count_faces = 0
@@ -88,6 +89,8 @@
         this.count_faces += total_faces_in_frame
         faces_info = JSON.stringify(result)
         const faceImages = await faceapi.extractFaces(input.canvases[0], result)
+
+        //faceImages.setAttribute('crossorigin', 'anonymous')
         
         if (result_list == "none"){
           vid.currentTime = 0
