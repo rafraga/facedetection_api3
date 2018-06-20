@@ -15,7 +15,8 @@
   <div id="all">
     <center>
       <div id="input_div">    
-      <h5><input style="position: top;right: 0;left: 0;margin-right: auto;margin-left: auto;height: 1em;text-align:center;top: 2em" id="video_link_input" value="https://www.youtube.com/watch?v=_VkzpJjLADI"><button id='submitbutton'><h6>GO!</h6></button></h5>
+      <h5><input style="position: top;right: 0;left: 0;margin-right: auto;margin-left: auto;height: 1em;text-align:center;top: 2em" id="video_link_input" value="https://www.youtube.com/watch?v=_VkzpJjLADI"></h5>
+      <button type="button" onclick="submitbutton()">Go!</button>
       <!-- <h5><input style="position: top;right: 0;left: 0;margin-right: auto;margin-left: auto;height: 1em;text-align:center;top: 2em" id="video_link_input" value="http://salty-plains-52394.herokuapp.com/media/video3.mp4"><div id='submit_button'><button>Go!</button></div></h5> -->
       </div>
       <div id="header" style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;top: 1em">
@@ -36,7 +37,7 @@
   <div id="faces_view">
   </div>
   <script>
-  $('#submitbutton').click(function() {
+  function submitbutton() {
     console.log("start!")
     var input_url_html = $('#video_link_input').val()
     var queryURL = "https://you-link.herokuapp.com/?url=" + input_url_html
@@ -173,7 +174,7 @@
       }
     }
   ) 
-  })
+  }
   </script>
 </body>
 </html>
