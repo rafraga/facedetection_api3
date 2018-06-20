@@ -15,7 +15,7 @@
   <div id="all">
     <center>
       <div id="input_div">    
-      <h5><input style="position: top;right: 0;left: 0;margin-right: auto;margin-left: auto;height: 1em;text-align:center;top: 2em" id="video_link_input" value="https:\/\/r2---sn-p5qs7ned.googlevideo.com\/videoplayback?mn=sn-p5qs7ned%2Csn-vgqsrnez&mm=31%2C26&id=o-AK19bdNAg3tUzrvq-4DdzgWxD7o6CM-CIcTPrMWVuoUa&pl=15&mv=m&ipbits=0&ms=au%2Conr&ei=zdopW82FA8yn8gTk0IrgCg&ip=54.162.123.71&ratebypass=yes&source=youtube&c=WEB&fvip=2&lmt=1527315903785732&dur=244.204&expire=1529491245&clen=15855153&key=yt6&mime=video%2Fmp4&gir=yes&initcwndbps=4985000&requiressl=yes&signature=AA33624ADC06175D02199D0D351552A1437536C5.A9B0A9207C6FA6C4852F68064E395B426A0325BF&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&itag=18&mt=1529469521&fexp=23709359"><div id='#submitbutton'><h6>GO!</h6></div></h5>
+      <h5><input style="position: top;right: 0;left: 0;margin-right: auto;margin-left: auto;height: 1em;text-align:center;top: 2em" id="video_link_input" value="https://www.youtube.com/watch?v=YGCLs9Bt_KY"><div id='#submitbutton'><h6>GO!</h6></div></h5>
       <!-- <h5><input style="position: top;right: 0;left: 0;margin-right: auto;margin-left: auto;height: 1em;text-align:center;top: 2em" id="video_link_input" value="http://salty-plains-52394.herokuapp.com/media/video2.mp4"><div id='submit_button'><button>Go!</button></div></h5> -->
       </div>
       <div id="header" style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;top: 1em">
@@ -36,126 +36,143 @@
   <div id="faces_view">
   </div>
   <script>
-    $('#submitbutton').click(function() {
-      $('#startbutton').val("PLEASE WAIT - LOADING VIDEO")
-      $('#startbutton').attr("style","position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0")
-      $('#input_div').empty()
-      var video_link = $('#video_link_input').val()
-      $('#video_div').html("<video id='videoel' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
-      var init_var = 0.0
-      let minConfidence = 0.5
-      let net, result
-      var result_list = "none"
-      var vid = document.getElementById('videoel')
-      var video_progress = -1
-      var faces = []
-      var count_faces = 0
-      var max_faces = 100
-      var times_list = []
-        function enablestart() {
-          //if (document.contains(document.getElementById('startbutton'))) {
-            //document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
-            //}
-          if (init_var == 0.0) {
-            vid.currentTime = vid.duration - (vid.duration * 0.03)
-            this.init_var += 1.0
-          } else {
-            this.init_var += 1.0
-          }
-        onPlay(vid)
-        }
-      async function onPlay(videoEl) {
-        if(videoEl.paused || videoEl.ended)
-          return false
+  $('#submitbutton').click(function() {
+    console.log("start!")
+    var input_url_html = $('#video_link_input').val()
+    var queryURL = "https://you-link.herokuapp.com/?url=" + input_url_html
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      for(var i in response){
+        if(response[i].quality == "medium"){
+          if(String(response[i].type).split(";")[0] == "video/mp4"){
 
-        if (video_progress <= vid.currentTime){
-          const input = new faceapi.NetInput(videoEl)
-          const { width, height } = input
-          const canvas = $('#overlay').get(0)
-          canvas.width = width
-          canvas.height = height
+            var video_link = response[i].url
 
-          const ts = Date.now()
-          result = await net.locateFaces(input, minConfidence) 
-          $('#time').val(`${(Date.now() - ts)} ms`)
-          $('#fps').val(`${faceapi.round(1000 / (Date.now() - ts))}`)
-
-          current_time = (Date.now() - ts)
-          current_fps = faceapi.round(1000 / (Date.now() - ts))
-          current_time_sec = vid.currentTime
-          print_process = parseInt(parseFloat(((vid.duration-(((vid.duration - current_time_sec) / vid.duration)*vid.duration))/vid.duration)*100).toFixed(0))
-          if (print_process < 100) {
-            $('#faces_view').html('<center><h5>Processing video: ' + print_process + '' +'%</h5><br><h6>Development version 0.01</h6></center>')
-          }else{
-            $('#faces_view').html('')
-          }
-          total_faces_in_frame = Object.keys(result).length
-          this.count_faces += total_faces_in_frame
-          faces_info = JSON.stringify(result)
-          const faceImages = await faceapi.extractFaces(input.canvases[0], result)
-          
-          if (result_list == "none"){
-            vid.currentTime = 0
-            this.result_list = []
-            start_time = vid.currentTime
-          } else {
-            this.times_list.push(parseInt(vid.currentTime))
-            this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>");
-            this.result_list.push("<div style='display:inline-block'><center>")
-            faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
-            //faceImages.forEach(function(canvas) {if(count_faces < max_faces){return this.faces.push(canvas)}})
-            faceImages.forEach(function(canvas) {return this.faces.push(canvas)})
-            this.result_list.push("</center></div></h6><br><br>")
-            this.video_progress = vid.currentTime
-
-            if (document.contains(document.getElementById('startbutton'))) {
-                  document.getElementById('startbutton').remove()
-                  $('#results-view').empty()
+            $('#startbutton').val("PLEASE WAIT - LOADING VIDEO")
+            $('#startbutton').attr("style","position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0")
+            $('#input_div').empty()
+            $('#video_div').html("<video id='videoel' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
+            var init_var = 0.0
+            let minConfidence = 0.5
+            let net, result
+            var result_list = "none"
+            var vid = document.getElementById('videoel')
+            var video_progress = -1
+            var faces = []
+            var count_faces = 0
+            var max_faces = 100
+            var times_list = []
+              function enablestart() {
+                //if (document.contains(document.getElementById('startbutton'))) {
+                  //document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
+                  //}
+                if (init_var == 0.0) {
+                  vid.currentTime = vid.duration - (vid.duration * 0.03)
+                  this.init_var += 1.0
+                } else {
+                  this.init_var += 1.0
                 }
+              onPlay(vid)
+              }
+            async function onPlay(videoEl) {
+              if(videoEl.paused || videoEl.ended)
+                return false
 
-            $("#results-view").html(result_list)
-            $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
-            setTimeout(() => onPlay(videoEl))
+              if (video_progress <= vid.currentTime){
+                const input = new faceapi.NetInput(videoEl)
+                const { width, height } = input
+                const canvas = $('#overlay').get(0)
+                canvas.width = width
+                canvas.height = height
+
+                const ts = Date.now()
+                result = await net.locateFaces(input, minConfidence) 
+                $('#time').val(`${(Date.now() - ts)} ms`)
+                $('#fps').val(`${faceapi.round(1000 / (Date.now() - ts))}`)
+
+                current_time = (Date.now() - ts)
+                current_fps = faceapi.round(1000 / (Date.now() - ts))
+                current_time_sec = vid.currentTime
+                print_process = parseInt(parseFloat(((vid.duration-(((vid.duration - current_time_sec) / vid.duration)*vid.duration))/vid.duration)*100).toFixed(0))
+                if (print_process < 100) {
+                  $('#faces_view').html('<center><h5>Processing video: ' + print_process + '' +'%</h5><br><h6>Development version 0.01</h6></center>')
+                }else{
+                  $('#faces_view').html('')
+                }
+                total_faces_in_frame = Object.keys(result).length
+                this.count_faces += total_faces_in_frame
+                faces_info = JSON.stringify(result)
+                const faceImages = await faceapi.extractFaces(input.canvases[0], result)
+                
+                if (result_list == "none"){
+                  vid.currentTime = 0
+                  this.result_list = []
+                  start_time = vid.currentTime
+                } else {
+                  this.times_list.push(parseInt(vid.currentTime))
+                  this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>");
+                  this.result_list.push("<div style='display:inline-block'><center>")
+                  faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
+                  //faceImages.forEach(function(canvas) {if(count_faces < max_faces){return this.faces.push(canvas)}})
+                  faceImages.forEach(function(canvas) {return this.faces.push(canvas)})
+                  this.result_list.push("</center></div></h6><br><br>")
+                  this.video_progress = vid.currentTime
+
+                  if (document.contains(document.getElementById('startbutton'))) {
+                        document.getElementById('startbutton').remove()
+                        $('#results-view').empty()
+                      }
+
+                  $("#results-view").html(result_list)
+                  $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
+                  setTimeout(() => onPlay(videoEl))
+                }
+              } else {
+                vid.onplaying = function() {
+                  $("#faces_view").attr("style","height:100px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 50%;text-align: center")
+                  $("#faces_view").html(faces)
+                  vid.pause()
+                  vid.remove()
+                  $('#spaces').html("")
+                  end_time = current_time_sec
+                  $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " faces found in video segment (from " + start_time + " to " + end_time + " seconds).</h6></center>")
+                  $('#spaces').html("<br><br>")
+                  $('#spaces2').html("<br>")
+                  $("#results-view").attr("style","height:300px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
+              
+
+                  // //save something in the dom to a file
+                  // domtoimage.toJpeg(document.getElementById('faces_view'), { quality: 0.95 })
+                  //   .then(function (dataUrl) {
+                  //       var link = document.createElement('a');
+                  //       link.download = 'image.jpeg';
+                  //       link.href = dataUrl;
+                  //       link.click();
+                  //   });
+
+
+
+              
+                }; 
+              return false
+              }
+            }
+            async function run() {
+              net = await initFaceDetectionNet()
+            }
+
+            vid.addEventListener('canplay', enablestart, false);
+
+            $(document).ready(function() {
+              run()
+            })
           }
-        } else {
-          vid.onplaying = function() {
-            $("#faces_view").attr("style","height:100px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 50%;text-align: center")
-            $("#faces_view").html(faces)
-            vid.pause()
-            vid.remove()
-            $('#spaces').html("")
-            end_time = current_time_sec
-            $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " faces found in video segment (from " + start_time + " to " + end_time + " seconds).</h6></center>")
-            $('#spaces').html("<br><br>")
-            $('#spaces2').html("<br>")
-            $("#results-view").attr("style","height:300px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
-        
-
-            // //save something in the dom to a file
-            // domtoimage.toJpeg(document.getElementById('faces_view'), { quality: 0.95 })
-            //   .then(function (dataUrl) {
-            //       var link = document.createElement('a');
-            //       link.download = 'image.jpeg';
-            //       link.href = dataUrl;
-            //       link.click();
-            //   });
-
-
-
-        
-          }; 
-        return false
         }
       }
-      async function run() {
-        net = await initFaceDetectionNet()
-      }
-
-      vid.addEventListener('canplay', enablestart, false);
-
-      $(document).ready(function() {
-        run()
-      })
+    }
+  ) 
   })
   </script>
 </body>
