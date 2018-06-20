@@ -37,17 +37,22 @@
   var queryURL = "https://you-link.herokuapp.com/?url=" + input_url_html
   $.ajax({
     url: queryURL,
-    method: "GET"
+    method: "GET",
+    beforeSend: function (x) {
+    x.setRequestHeader("Access-Control-Allow-Headers", "x-requested-with, x-requested-by", 'XMLHttpRequest')}    
   }).then(function(response) {
     for(var i in response){
       if(response[i].quality == "medium"){
         if(String(response[i].type).split(";")[0] == "video/mp4"){
-          var video_link = "http://cors-anywhere.herokuapp.com/"+response[i].url
+          var video_link = String("https://cors.now.sh/"+response[i].url)
           console.log(response[i].url)
-          console.log("http://cors-anywhere.herokuapp.com/"+response[i].url)
+          console.log(video_link)
 
-          //var video_link = "http://cors-anywhere.herokuapp.com/https://r4---sn-p5qlsndz.googlevideo.com//videoplayback?sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&fexp=23709359&ip=54.162.123.71&key=yt6&fvip=4&lmt=1395162367855217&id=o-AIk8ey9cipGswno939rL_il1h0CONeIQvwwBLwQiZjJf&ei=XuYpW8LrCMLV8gSt9af4Dw&initcwndbps=7582500&mm=31%2C26&mn=sn-p5qlsndz%2Csn-vgqsrnek&clen=421427&requiressl=yes&mime=video%2Fmp4&source=youtube&ms=au%2Conr&mt=1529472521&mv=m&ipbits=0&signature=5C82B3EFC91408D49F9881DA9D167FF7F3FB10FF.087843E18AA7933896FECF89326D194B3041A271&c=WEB&itag=18&ratebypass=yes&dur=9.473&expire=1529494206&pl=15&gir=yes"
-          //var video_link = "http://salty-plains-52394.herokuapp.com/media/video3.mp4"
+          //APIs for bypassing CORS:
+          //
+          // https://cors.now.sh/
+          // http://cors-anywhere.herokuapp.com/
+          //
 
           $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
           var init_var = 0.0
