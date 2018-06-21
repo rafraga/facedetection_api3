@@ -49,7 +49,7 @@
 
 $(function() {
     promise.done(function(myUrl) {
-      
+
     var proxy = 'https://cors-anywhere.herokuapp.com/'
     var video_link = proxy + myUrl
     //window.location.reload(true);
@@ -176,9 +176,10 @@ $(function() {
 
     vid.addEventListener('canplay', enablestart, false);
 
-    $(document).ready(function() {
-      run()
-    })
+    run()
+    // $(document).ready(function() {
+    //   run()
+    // })
 
 
     });
