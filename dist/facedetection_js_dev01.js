@@ -12,9 +12,6 @@
     var times_list = []
     var results_data = []
       function enablestart() {
-        //if (document.contains(document.getElementById('startbutton'))) {
-          //document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
-          //}
         if (init_var == 0.0) {
           vid.currentTime = vid.duration - (vid.duration * 0.03)
           this.init_var += 1.0
