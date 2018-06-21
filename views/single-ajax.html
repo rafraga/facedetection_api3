@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Single AJAX</title>
+</head>
+
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    //var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=U1it45QagN8")  
+    $.ajax({
+      url: 'https://noembed.com/embed?url=' + "https://www.youtube.com/watch?v=U1it45QagN8",
+      //url: 'https://noembed.com/embed?url=' + user_input_link,
+      method: "GET"
+    }).then(function(response) {
+      for(var i in response){
+        console.log(response.title)
+       //console.log(response[i])
+     }
+    });
+
+</script>
+
+</body>
+
+</html>

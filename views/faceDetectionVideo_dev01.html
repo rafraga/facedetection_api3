@@ -29,20 +29,49 @@
   <div id="faces_view">
   </div>
   <script>
-  var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=U1it45QagN8")
-  var promise2 = $.ajax({
-    url: 'https://noembed.com/embed?url=' + user_input_link,
+  
+  var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=8HlqSrCazqo")
+  var youtube_id = String(user_input_link).split("=")[1]
+  youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
+  $('#youtube_thumb').html("<br><img src='" + youtube_thumbnail + "'><br>")
+  document.getElementById("results-view").style.display = "none"
+  var video_link
+  var Youtube = {}
+
+  var promise = $.ajax({
+    url: 'https://you-link.herokuapp.com/?url=' + user_input_link,
     method: "GET"
   }).then(function(response) {
-    console.log(response)
     for(var i in response){
-      console.log(response[i])}})
+      if(String(response[i].type).split(";")[0] == "video\/mp4"){
+        if(String(response[i].quality).split(";")[0] == "medium"){
+          //console.log(response[i].url)
+          return response[i].url
+        }
+      }
+    }
+  })
+  
+  $(function() {
+      promise.done(function(myUrl) {
+        Youtube.url = myUrl
+        document.getElementById("proceed_button").disabled = false
+    })
+  }) 
 
-promise2.done(function(myUrl2) {
-        console.log(myUrl2)
-        console.log(YoutubeThumb.url)
-        $('#youtube_thumb').html("<br><img src='" + YoutubeThumb.url + "'><br><h5>"+ myUrl2 +"</h5>")
-      })
+  function loadScript(script_url){
+      $('#proceed_button').remove()
+      $('#youtube_thumb').remove()
+      $('#loading_div').html("<input style='position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0' class='btn' type='button' value='PLEASE WAIT - LOADING VIDEO' disabled='disabled' id='startbutton'></input>")
+      document.getElementById("results-view").style.display = "block"
+      var proxy = 'https://cors-anywhere.herokuapp.com/'
+      this.video_link = proxy + Youtube.url
+      $('#start_button').empty()
+      var head= document.getElementsByTagName('head')[0]
+      var script= document.createElement('script')
+      script.type= 'text/javascript'
+      script.src= script_url
+      head.appendChild(script)}
   </script>
 </body>
 </html>
