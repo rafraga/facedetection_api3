@@ -10,7 +10,7 @@
 </head>
 <body>
   <center>
-      <button id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h6>START!</h6></button>
+      <button class="btn" id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h5>START!</h5></button>
       <div id='youtube_thumb'></div>
       <div id="all">
       <div id="header" style="position:fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;top: 1em">
@@ -61,6 +61,7 @@
 
   function loadScript(script_url){
       $('#proceed_button').remove()
+      $('#youtube_thumb').remove()
       $('#loading_div').html("<input style='position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0' class='btn' type='button' value='PLEASE WAIT - LOADING VIDEO' disabled='disabled' id='startbutton'></input>")
       document.getElementById("results-view").style.display = "block"
       var proxy = 'https://cors-anywhere.herokuapp.com/'
