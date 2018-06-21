@@ -171,9 +171,10 @@ $(function() {
     }
     async function run() {
       net = await initFaceDetectionNet()
+      //vid.addEventListener('canplay', enablestart, false);
     }
 
-    vid.addEventListener('canplay', enablestart, false);
+    vid.addEventListener('canplay', enablestart(), false);
     // $(document).ready(function() {
     //   run()
     // })
