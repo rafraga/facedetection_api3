@@ -11,14 +11,14 @@
 </head>
 <body>
   <center>
-      <button id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto;" onclick="start()" value="Proceed" disabled='disabled'><h6>START!</h6></button>
+      <button id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto;top:2em;" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h6>START!</h6></button>
   <div id="all">
       <div id="header" style="position:fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;top: 1em">
       <div id="video_div"></div>
         <canvas id="overlay" />
       </div>
       <div id="spaces">
-        <br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br>
       </div>
       <div id="loading_div"></div>
       <br><br>
@@ -29,37 +29,35 @@
   <div id="faces_view">
   </div>
   <script>
+  var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=1zNr8Pf1QkY");
   document.getElementById("results-view").style.display = "none"
   var video_link
   var Youtube = {}
-
-  function start(){
-    var promise = $.ajax({
-      url: 'https://you-link.herokuapp.com/?url=' + 'https://www.youtube.com/watch?v=6A8TiUpKDVg',
-      method: "GET"
-    }).then(function(response) {
-      for(var i in response){
-        if(String(response[i].type).split(";")[0] == "video\/mp4"){
-          if(String(response[i].quality).split(";")[0] == "medium"){
-            //console.log(response[i].url)
-            return response[i].url
-            }
-          }
+  var promise = $.ajax({
+    url: 'https://you-link.herokuapp.com/?url=' + user_input_link,
+    method: "GET"
+  }).then(function(response) {
+    for(var i in response){
+      if(String(response[i].type).split(";")[0] == "video\/mp4"){
+        if(String(response[i].quality).split(";")[0] == "medium"){
+          //console.log(response[i].url)
+          return response[i].url
         }
-      })
+      }
     }
-
+  })
+  
   $(function() {
       promise.done(function(myUrl) {
         Youtube.url = myUrl
         document.getElementById("proceed_button").disabled = false
-        loadScript('facedetection_js_dev01.js')
     })
   }) 
 
-  function loadScript(script_url){
+  
+  function loadScript(script_url)
+  {
       $('#proceed_button').remove()
-      document.getElementById("results-view").style.display = "block"
       $('#loading_div').html("<input style='position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0' class='btn' type='button' value='PLEASE WAIT - LOADING VIDEO' disabled='disabled' id='startbutton'></input>")
       var proxy = 'https://cors-anywhere.herokuapp.com/'
       this.video_link = proxy + Youtube.url
@@ -68,8 +66,13 @@
       var script= document.createElement('script')
       script.type= 'text/javascript'
       script.src= script_url
-      head.appendChild(script)}
+      head.appendChild(script)
+  }
 
+
+
+  
+    
   </script>
 </body>
 </html>
