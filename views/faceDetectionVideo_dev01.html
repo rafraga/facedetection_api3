@@ -41,11 +41,7 @@
           if(String(response[i].quality).split(";")[0] == "medium"){
             //console.log(response[i].url)
             var myUrl = response[i].url
-          }
-        }
-      }
-    });
-    var proxy = 'https://cors-anywhere.herokuapp.com/'
+            var proxy = 'https://cors-anywhere.herokuapp.com/'
     var video_link = proxy + myUrl
     //window.location.reload(true);
     //api for mp4 youtube links: https://you-link.herokuapp.com/?url=https://www.youtube.com/watch?v=_VkzpJjLADI
@@ -174,6 +170,11 @@
     $(document).ready(function() {
       run()
     })
+
+          }
+        }
+      }
+    });
 
   </script>
 </body>
