@@ -52,7 +52,7 @@
   })
 
 var promise2 = $.ajax({
-    url: 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    url: 'https://noembed.com/embed?url=' + user_input_link,
     method: "GET"
   }).then(function(response) {
     console.log(response)
@@ -64,8 +64,10 @@ var promise2 = $.ajax({
       promise1.done(function(myUrl) {
         Youtube.url = myUrl
         document.getElementById("proceed_button").disabled = false
-        promise2.done(function(myUrl2) {$('#youtube_thumb').html("<br><img src='" + youtube_thumbnail + "'><br><h5>"+ myUrl2 +"</h5>")})
-    })
+      })
+      promise2.done(function(myUrl2) {
+        $('#youtube_thumb').html("<br><img src='" + youtube_thumbnail + "'><br><h5>"+ myUrl2 +"</h5>")
+      })
   }) 
 
   function loadScript(script_url){
