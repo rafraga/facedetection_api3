@@ -179,7 +179,7 @@ $(function() {
       net = await initFaceDetectionNet()
     }
 
-    vid.addEventListener('canplay', enablestart, false);
+    vid.addEventListener('canplay', onPlay(vid), false);
 
     $(document).ready(function() {
       run()
