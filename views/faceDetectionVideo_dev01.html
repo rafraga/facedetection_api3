@@ -10,7 +10,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </head>
 <body>
-    <button id="start_button" style="position:fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 4em;width: 6em;top: 1em;" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed"><h6>START!</h6></button>
+    <button style="position:fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 4em;width: 7em;top: 1em;" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed"><h6>START!</h6></button>
   <center>
   <div id="all">
     <center>
@@ -32,13 +32,10 @@
   <div id="faces_view">
   </div>
   <script>
-    var myUrl, proxy
 
   function loadScript(script_url)
   {
-      this.myUrl = 'https://r6---sn-p5qlsns6.googlevideo.com\/videoplayback?dur=38.730&clen=2528314&ratebypass=yes&expire=1529578044&fvip=6&key=yt6&mime=video%2Fmp4&c=WEB&pl=16&itag=18&mm=31%2C26&ip=54.87.84.248&mn=sn-p5qlsns6%2Csn-vgqsenlz&gir=yes&id=o-ACBNpjRTzT1AgGb6pjmOp5SFFD-v7H0JuKVlysr8_7oY&signature=9B7737F30900CA38991AE13E1BA6956F40074A1D.186AB649346D580E8A71B99AB8145AF13652F2DA&ms=au%2Conr&mt=1529556311&mv=m&ipbits=0&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&lmt=1456384411335926&fexp=23709359&requiressl=yes&ei=3C0rW8-iHpmEhgaY9I24Aw&source=youtube&initcwndbps=5820000'
-      this.proxy = 'https://cors-anywhere.herokuapp.com/'
-      $('#start_button').empty()
+      console.log('START!')
       var head= document.getElementsByTagName('head')[0]
       var script= document.createElement('script')
       script.type= 'text/javascript'
