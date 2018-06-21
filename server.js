@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const cors = require('cors');
+// const cors = require('cors');
 // const domtoimage = require('dom-to-image')
 const app = express()
 const viewsDir = path.join(__dirname, 'views')
@@ -15,9 +15,6 @@ app.use(function(req, res, next) {
 //   res.writeHead(200, {'Content-Type': 'text/plain'});
 //   res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html'))
 // });
-
-app.use(cors()); 
-app.use(express.static(path.join(__dirname, '../')));
 
 app.use(express.static(viewsDir))
 app.use(express.static(path.join(__dirname, './public')))
