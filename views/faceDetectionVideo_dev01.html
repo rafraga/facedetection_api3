@@ -31,8 +31,9 @@
   <div id="faces_view">
   </div>
   <script>
-    //var myUrl = 'https://r1---sn-0ja5-a5me.googlevideo.com/videoplayback?source=youtube&initcwndbps=1762500&fvip=4&id=o-APuBhu4EG_ASbpc79k-T2ZiAItzENS9ueLMDf35uPNrG&key=yt6&ip=131.179.60.148&lmt=1529089335554037&dur=515.932&expire=1529571848&mt=1529550169&mv=m&ei=qBUrW6m2HNOi-wP8iYrwCQ&ms=au%2Crdu&requiressl=yes&gir=yes&clen=8522141&mn=sn-0ja5-a5me%2Csn-a5mlrn7z&keepalive=yes&itag=133&c=WEB&fexp=23709359&mm=31%2C29&mime=video%2Fmp4&pl=21&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&signature=AB92A79FB6E4E97A3C46D5DB24BF78B9785F03B9.DE2706AD321B77B58D766E59929F8768ACDC7CF9&sparams=aitags%2Cclen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Ckeepalive%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Crequiressl%2Csource%2Cexpire&ipbits=0&ratebypass=yes'
-    $.ajax({
+
+
+    var promise = $.ajax({
       url: 'https://you-link.herokuapp.com/?url=' + 'https://www.youtube.com/watch?v=4nOSvpnCFTs',
       method: "GET"
     }).then(function(response) {
@@ -40,8 +41,16 @@
         if(String(response[i].type).split(";")[0] == "video\/mp4"){
           if(String(response[i].quality).split(";")[0] == "medium"){
             //console.log(response[i].url)
-            var myUrl = response[i].url
-            var proxy = 'https://cors-anywhere.herokuapp.com/'
+            return response[i].url
+          }
+        }
+      }
+    });
+
+$(function() {
+    promise.done(function(myUrl) {
+      
+    var proxy = 'https://cors-anywhere.herokuapp.com/'
     var video_link = proxy + myUrl
     //window.location.reload(true);
     //api for mp4 youtube links: https://you-link.herokuapp.com/?url=https://www.youtube.com/watch?v=_VkzpJjLADI
@@ -171,10 +180,10 @@
       run()
     })
 
-          }
-        }
-      }
+
     });
+});
+
 
   </script>
 </body>
