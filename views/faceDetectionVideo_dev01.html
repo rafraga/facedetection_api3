@@ -32,7 +32,7 @@
   
   var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=U1it45QagN8")
   var youtube_id = String(user_input_link).split("=")[1]
-  youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
+  var youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
   document.getElementById("results-view").style.display = "none"
   var video_link
   var Youtube = {}
