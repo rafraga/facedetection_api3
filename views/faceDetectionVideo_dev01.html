@@ -44,7 +44,11 @@
       method: "GET"
     }).then(function(response) {
       for(var i in response){
-      console.log(response[i].url)
+        if(String(response[i].type).split(";")[0] == "video\/mp4"){
+          if(String(response[i].quality).split(";")[0] == "medium"){
+            console.log(response[i].url)
+          }
+        }
       }
     });
     
