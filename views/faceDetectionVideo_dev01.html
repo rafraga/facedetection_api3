@@ -29,6 +29,7 @@
   <div id="faces_view">
   </div>
   <script>
+  var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=U1it45QagN8")
   var promise2 = $.ajax({
     url: 'https://noembed.com/embed?url=' + user_input_link,
     method: "GET"
