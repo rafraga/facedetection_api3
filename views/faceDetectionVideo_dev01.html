@@ -32,9 +32,15 @@
   <div id="faces_view">
   </div>
   <script>
-  function start_button() {
-    var video_link = "http://salty-plains-52394.herokuapp.com/media/video3.mp4"
-    $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
+
+    function start_button() {
+      var video_link = "http://salty-plains-52394.herokuapp.com/media/video3.mp4"
+      $('#video_div').attr("src",video_link)
+      vid = document.getElementById('videoel')
+      vid.play()
+    }
+    
+    $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
     var init_var = 0.0
     let minConfidence = 0.5
     let net, result
@@ -47,7 +53,7 @@
     var max_faces = 100
     var times_list = []
     var results_data = [] 
-  }
+
     function enablestart() {
       //if (document.contains(document.getElementById('startbutton'))) {
         //document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
