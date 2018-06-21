@@ -72,7 +72,9 @@ $(function() {
     var max_faces = 100
     var times_list = []
     var results_data = []
-    vid.play()
+    if(vid.paused){
+      vid.play()
+      }
       function enablestart() {
         //if (document.contains(document.getElementById('startbutton'))) {
           //document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
