@@ -22,14 +22,14 @@
       </div>
       <div id="loading_div"></div>
       <br><br>
-      <div style="height:120px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br>
-      </div>
+      <div style="height:120px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br></div>
   </div>
   </center>
   <div id="spaces2"></div>
   <div id="faces_view">
   </div>
   <script>
+  document.getElementById("results-view").style.display = "none"
   var video_link
   var Youtube = {}
   var promise = $.ajax({
@@ -57,6 +57,7 @@
   function loadScript(script_url)
   {
       $('#proceed_button').remove()
+      document.getElementById("results-view").style.display = "block"
       $('#loading_div').html("<input style='position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0' class='btn' type='button' value='PLEASE WAIT - LOADING VIDEO' disabled='disabled' id='startbutton'></input>")
       var proxy = 'https://cors-anywhere.herokuapp.com/'
       this.video_link = proxy + Youtube.url
