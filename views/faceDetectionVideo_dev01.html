@@ -169,17 +169,18 @@ $(function() {
       return false
       }
     }
-    async function run() {
-      net = await initFaceDetectionNet()
-      //vid.addEventListener('canplay', enablestart, false);
-    }
 
-    vid.addEventListener('canplay', enablestart(), false);
+
+    vid.addEventListener('canplay', enablestart, false);
     // $(document).ready(function() {
     //   run()
     // })
     });
   });
+
+    async function run() {
+      net = await initFaceDetectionNet()
+    }
 
     $(document).ready(function() {
       run()
