@@ -38,7 +38,7 @@
   var video_link
   var Youtube = {}
 
-  var promise = $.ajax({
+  var promise1 = $.ajax({
     url: 'https://you-link.herokuapp.com/?url=' + user_input_link,
     method: "GET"
   }).then(function(response) {
@@ -51,9 +51,18 @@
       }
     }
   })
+
+var promise2 = $.ajax({
+    url: 'https://noembed.com/embed?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    method: "GET"
+  }).then(function(response) {
+    console.log(response)
+    for(var i in response){
+      console.log(response[i])}})
+  
   
   $(function() {
-      promise.done(function(myUrl) {
+      promise1.done(function(myUrl) {
         Youtube.url = myUrl
         document.getElementById("proceed_button").disabled = false
     })
