@@ -33,12 +33,16 @@
   </div>
   <script>
 
+    var video = document.getElementById('video');
+    var source = document.createElement('source');
+
     function start_button() {
-      var video_link = "http://salty-plains-52394.herokuapp.com/media/video3.mp4"
-      $('#video_div').attr("src",video_link)
-      vid = document.getElementById('videoel')
-      vid.play()
+      source.setAttribute('src', 'http://salty-plains-52394.herokuapp.com/media/video3.mp4'); 
+      video.load();
+      video.play();
     }
+
+    start_button()
     
     $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
     var init_var = 0.0
@@ -161,7 +165,6 @@
   $(document).ready(function() {
     run()
   })
-  start_button()
   </script>
 </body>
 </html>
