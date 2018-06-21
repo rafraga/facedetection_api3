@@ -36,6 +36,8 @@
   document.getElementById("results-view").style.display = "none"
   var video_link
   var Youtube = {}
+  var YoutubeThumb = {}
+  YoutubeThumb.url = youtube_thumbnail
 
   var promise1 = $.ajax({
     url: 'https://you-link.herokuapp.com/?url=' + user_input_link,
@@ -44,7 +46,6 @@
     for(var i in response){
       if(String(response[i].type).split(";")[0] == "video\/mp4"){
         if(String(response[i].quality).split(";")[0] == "medium"){
-          //console.log(response[i].url)
           return response[i].url
         }
       }
@@ -66,7 +67,9 @@ var promise2 = $.ajax({
         document.getElementById("proceed_button").disabled = false
       })
       promise2.done(function(myUrl2) {
-        $('#youtube_thumb').html("<br><img src='" + youtube_thumbnail + "'><br><h5>"+ myUrl2 +"</h5>")
+        console.log(myUrl2)
+        console.log(YoutubeThumb.url)
+        $('#youtube_thumb').html("<br><img src='" + YoutubeThumb.url + "'><br><h5>"+ myUrl2 +"</h5>")
       })
   }) 
 
