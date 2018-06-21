@@ -30,7 +30,7 @@
   <div id="faces_view">
   </div>
   <script>
-  var vid_url, video_link
+  var video_link
   var promise = $.ajax({
     url: 'https://you-link.herokuapp.com/?url=' + 'https://www.youtube.com/watch?v=4nOSvpnCFTs',
     method: "GET"
@@ -47,7 +47,7 @@
   
   $(function() {
       promise.done(function(myUrl) {
-        this.vid_url = myUrl
+        var vid_url = myUrl
         document.getElementById("proceed_button").disabled = false
     })
   }) 
@@ -58,7 +58,7 @@
       $('#proceed_button').remove()
       $('#loading_div').html("<input style='position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0' class='btn' type='button' value='PLEASE WAIT - LOADING VIDEO' disabled='disabled' id='startbutton'></input>")
       var proxy = 'https://cors-anywhere.herokuapp.com/'
-      this.video_link = proxy + this.vid_url
+      this.video_link = proxy + vid_url
       $('#start_button').empty()
       var head= document.getElementsByTagName('head')[0]
       var script= document.createElement('script')
