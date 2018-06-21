@@ -32,9 +32,9 @@
   <div id="faces_view">
   </div>
   <script>
-    //videolink below from: https://you-link.herokuapp.com/?url=https://www.youtube.com/watch?v=_VkzpJjLADI
+    //api for mp4 youtube links: https://you-link.herokuapp.com/?url=https://www.youtube.com/watch?v=_VkzpJjLADI
     //var video_link = "http://cors-anywhere.herokuapp.com/https://r5---sn-p5qlsnd6.googlevideo.com//videoplayback?id=o-AGFngGsmA5prJZgP01ts3x1QuBgZoK-Dgb00LFSufVP8&pl=15&signature=8EC7F21718431BCBDC04366C899A9A4D1515D552.CA14EC6855BEF91253163B39A3BFB68C8F7F72E8&mm=31%2C29&mn=sn-p5qlsnd6%2Csn-p5qs7n76&ms=au%2Crdu&mt=1529480220&mv=m&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpcm2%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&ip=54.162.123.71&requiressl=yes&pcm2=yes&ratebypass=yes&expire=1529501901&ipbits=0&fvip=6&dur=0.000&clen=6690781&itag=43&gir=yes&mime=video%2Fwebm&key=yt6&lmt=1529015647285355&ei=bQQqW-WGF8ihgwOLkLSoCA&fexp=23709359&c=WEB&source=youtube&initcwndbps=6678750"
-    var video_link = "https://r1---sn-0ja5-a5me.googlevideo.com/videoplayback?source=youtube&initcwndbps=1762500&fvip=4&id=o-APuBhu4EG_ASbpc79k-T2ZiAItzENS9ueLMDf35uPNrG&key=yt6&ip=131.179.60.148&lmt=1529089335554037&dur=515.932&expire=1529571848&mt=1529550169&mv=m&ei=qBUrW6m2HNOi-wP8iYrwCQ&ms=au%2Crdu&requiressl=yes&gir=yes&clen=8522141&mn=sn-0ja5-a5me%2Csn-a5mlrn7z&keepalive=yes&itag=133&c=WEB&fexp=23709359&mm=31%2C29&mime=video%2Fmp4&pl=21&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&signature=AB92A79FB6E4E97A3C46D5DB24BF78B9785F03B9.DE2706AD321B77B58D766E59929F8768ACDC7CF9&sparams=aitags%2Cclen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Ckeepalive%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Crequiressl%2Csource%2Cexpire&ipbits=0&ratebypass=yes"
+    var video_link = "http://salty-plains-52394.herokuapp.com/media/video3.mp4"
     $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
     var init_var = 0.0
     let minConfidence = 0.5
