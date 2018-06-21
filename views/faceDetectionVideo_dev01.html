@@ -32,30 +32,45 @@
   
   var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=8HlqSrCazqo")
   var youtube_id = String(user_input_link).split("=")[1]
-  youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
-  $('#youtube_thumb').html("<br><img src='" + youtube_thumbnail + "'><br>")
   document.getElementById("results-view").style.display = "none"
   var video_link
   var Youtube = {}
 
-  var promise = $.ajax({
+  var promise1 = $.ajax({
     url: 'https://you-link.herokuapp.com/?url=' + user_input_link,
     method: "GET"
   }).then(function(response) {
     for(var i in response){
       if(String(response[i].type).split(";")[0] == "video\/mp4"){
         if(String(response[i].quality).split(";")[0] == "medium"){
-          //console.log(response[i].url)
           return response[i].url
         }
       }
     }
   })
+
+  var promise2 = $.ajax({
+      url: 'https://noembed.com/embed?url=' + user_input_link,
+      method: "GET"
+    }).then(function(response) {
+      var thumb_list = []
+      thumb_list.push(JSON.parse(response).author_name)
+      thumb_list.push(JSON.parse(response).author_url)
+      thumb_list.push(JSON.parse(response).title)
+      thumb_list.push(JSON.parse(response).url)
+      return thumb_list
+    })
   
   $(function() {
-      promise.done(function(myUrl) {
+      promise1.done(function(myUrl) {
         Youtube.url = myUrl
         document.getElementById("proceed_button").disabled = false
+
+        promise2.done(function(myUrl2) {
+          console.log(myUrl2)
+          //youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
+          //$('#youtube_thumb').html("<br><img src='" + youtube_thumbnail + "'><br>")
+        })
     })
   }) 
 
