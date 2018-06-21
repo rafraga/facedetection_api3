@@ -33,7 +33,6 @@
   var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=U1it45QagN8")
   var youtube_id = String(user_input_link).split("=")[1]
   youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
-  $('#youtube_thumb').html("<br><img src='" + youtube_thumbnail + "'><br>")
   document.getElementById("results-view").style.display = "none"
   var video_link
   var Youtube = {}
@@ -65,6 +64,7 @@ var promise2 = $.ajax({
       promise1.done(function(myUrl) {
         Youtube.url = myUrl
         document.getElementById("proceed_button").disabled = false
+        promise2.done(function(myUrl2) {$('#youtube_thumb').html("<br><img src='" + youtube_thumbnail + "'><br><h5>"+ myUrl2 +"</h5>")})
     })
   }) 
 
