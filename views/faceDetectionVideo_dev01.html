@@ -20,7 +20,7 @@
       <div id="spaces">
         <br><br><br><br><br><br><br><br><br>
       </div>
-      <!-- <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>       -->
+      <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>      
       <br><br>
       <div style="height:120px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br><h3><center></center></h3>
       </div>
@@ -32,34 +32,33 @@
   </div>
   <script>
 
-
-    var promise = $.ajax({
-      url: 'https://you-link.herokuapp.com/?url=' + 'https://www.youtube.com/watch?v=4nOSvpnCFTs',
-      method: "GET"
-    }).then(function(response) {
-      for(var i in response){
-        if(String(response[i].type).split(";")[0] == "video\/mp4"){
-          if(String(response[i].quality).split(";")[0] == "medium"){
-            //console.log(response[i].url)
-            return response[i].url
-          }
-        }
+var promise = $.ajax({
+  url: 'https://you-link.herokuapp.com/?url=' + 'https://www.youtube.com/watch?v=4nOSvpnCFTs',
+  method: "GET"
+}).then(function(response) {
+  for(var i in response){
+    if(String(response[i].type).split(";")[0] == "video\/mp4"){
+      if(String(response[i].quality).split(";")[0] == "medium"){
+        //console.log(response[i].url)
+        return response[i].url
       }
-    });
+    }
+  }
+})
 
 $(function() {
     promise.done(function(myUrl) {
 
+
+    var myUrl = 'https://r6---sn-p5qlsns6.googlevideo.com\/videoplayback?dur=38.730&clen=2528314&ratebypass=yes&expire=1529578044&fvip=6&key=yt6&mime=video%2Fmp4&c=WEB&pl=16&itag=18&mm=31%2C26&ip=54.87.84.248&mn=sn-p5qlsns6%2Csn-vgqsenlz&gir=yes&id=o-ACBNpjRTzT1AgGb6pjmOp5SFFD-v7H0JuKVlysr8_7oY&signature=9B7737F30900CA38991AE13E1BA6956F40074A1D.186AB649346D580E8A71B99AB8145AF13652F2DA&ms=au%2Conr&mt=1529556311&mv=m&ipbits=0&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&lmt=1456384411335926&fexp=23709359&requiressl=yes&ei=3C0rW8-iHpmEhgaY9I24Aw&source=youtube&initcwndbps=5820000'
     var proxy = 'https://cors-anywhere.herokuapp.com/'
     var video_link = proxy + myUrl
     //window.location.reload(true);
     //api for mp4 youtube links: https://you-link.herokuapp.com/?url=https://www.youtube.com/watch?v=_VkzpJjLADI
     //var video_link = "http://cors-anywhere.herokuapp.com/https://r5---sn-p5qlsnd6.googlevideo.com//videoplayback?id=o-AGFngGsmA5prJZgP01ts3x1QuBgZoK-Dgb00LFSufVP8&pl=15&signature=8EC7F21718431BCBDC04366C899A9A4D1515D552.CA14EC6855BEF91253163B39A3BFB68C8F7F72E8&mm=31%2C29&mn=sn-p5qlsnd6%2Csn-p5qs7n76&ms=au%2Crdu&mt=1529480220&mv=m&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpcm2%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&ip=54.162.123.71&requiressl=yes&pcm2=yes&ratebypass=yes&expire=1529501901&ipbits=0&fvip=6&dur=0.000&clen=6690781&itag=43&gir=yes&mime=video%2Fwebm&key=yt6&lmt=1529015647285355&ei=bQQqW-WGF8ihgwOLkLSoCA&fexp=23709359&c=WEB&source=youtube&initcwndbps=6678750"
     //var video_link = "https://salty-plains-52394.herokuapp.com/media/video3.mp4"
-
-
     
-    $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
+    $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
     var init_var = 0.0
     let minConfidence = 0.5
     let net, result
@@ -72,9 +71,6 @@ $(function() {
     var max_faces = 100
     var times_list = []
     var results_data = []
-    
-    //if(vid.paused){vid.play()}
-      
       function enablestart() {
         //if (document.contains(document.getElementById('startbutton'))) {
           //document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
@@ -165,27 +161,22 @@ $(function() {
           //       link.href = dataUrl;
           //       link.click();
           //   });
+       
         }; 
       return false
       }
     }
-
-
-    vid.addEventListener('canplay', enablestart(), false);
-    // $(document).ready(function() {
-    //   run()
-    // })
-    });
-  });
-
     async function run() {
       net = await initFaceDetectionNet()
     }
 
+    vid.addEventListener('canplay', enablestart, false);
+
     $(document).ready(function() {
       run()
     })
-
+    
+  })}) 
   </script>
 </body>
 </html>
