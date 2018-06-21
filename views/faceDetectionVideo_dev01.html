@@ -79,7 +79,7 @@ $(function() {
       }
       onPlay(vid)}
       
-    $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
+    $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' + preload='auto' loop playsinline autoplay muted width='250'></video>")
     var init_var = 0.0
     let minConfidence = 0.5
     let net, result
@@ -180,7 +180,9 @@ $(function() {
       net = await initFaceDetectionNet()
     }
 
-    vid.addEventListener('canplay', onPlay(vid), false);
+    vid.addEventListener('canplay', onPlay(vid), false)
+    vid.addEventListener('oncanplay', onPlay(vid), false)
+
 
     $(document).ready(function() {
       run()
