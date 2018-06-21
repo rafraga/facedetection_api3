@@ -34,7 +34,7 @@
   <script>
     var video_link = "http://salty-plains-52394.herokuapp.com/media/video3.mp4"
     //var video_link = "http://118.69.55.218:90/nphMotionJpeg?Resolution=320x240&Quality=Standard"
-    $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
+    $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  onplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
     let minConfidence = 0.5
     let net, result
     var result_list = "none"
