@@ -10,8 +10,6 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 })
 
-app.get('/', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html')))
-
 // app.get('/', function (req, res) { 
 //   res.writeHead(200, {'Content-Type': 'text/plain'});
 //   res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html'))
@@ -23,6 +21,9 @@ app.use(express.static(path.join(__dirname, './weights')))
 app.use(express.static(path.join(__dirname, './dist')))
 app.use(express.static(path.join(__dirname, './node_modules/axios/dist')))
 app.use(express.static(path.join(__dirname, './node_modules/dom-to-image/dist')))
+
+app.get('/', (req, res) => res.redirect('/face_detection_video'))
+app.get('/face_detection_video', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo.html')))
 
 app.get('/dev', (req, res) => res.redirect('/face_detection_video_dev'))
 app.get('/face_detection_video_dev', (req, res) => res.sendFile(path.join(viewsDir, 'faceDetectionVideo_dev01.html')))
