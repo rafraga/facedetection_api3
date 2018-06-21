@@ -21,7 +21,7 @@
       <div id="spaces">
         <br><br><br><br><br><br><br><br><br>
       </div>
-      <!-- <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>       -->
+      <input style="position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0" class="btn" type="button" value="PLEASE WAIT - LOADING VIDEO" disabled="disabled" id="startbutton"></input>      
       <br><br>
       <div style="height:120px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br><h3><center></center></h3>
       </div>
@@ -32,9 +32,11 @@
   <div id="faces_view">
   </div>
   <script>
-    //var video_link = "http://salty-plains-52394.herokuapp.com/media/video3.mp4"
-    var video_link = "http://122.17.153.231/cgi-bin/camera?resolution=640&amp;quality=1&amp;Language=0&amp;1529546510"
-    $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  onplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
+    //videolink below from: https://you-link.herokuapp.com/?url=https://www.youtube.com/watch?v=_VkzpJjLADI
+    //var video_link = "http://cors-anywhere.herokuapp.com/https://r5---sn-p5qlsnd6.googlevideo.com//videoplayback?id=o-AGFngGsmA5prJZgP01ts3x1QuBgZoK-Dgb00LFSufVP8&pl=15&signature=8EC7F21718431BCBDC04366C899A9A4D1515D552.CA14EC6855BEF91253163B39A3BFB68C8F7F72E8&mm=31%2C29&mn=sn-p5qlsnd6%2Csn-p5qs7n76&ms=au%2Crdu&mt=1529480220&mv=m&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpcm2%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&ip=54.162.123.71&requiressl=yes&pcm2=yes&ratebypass=yes&expire=1529501901&ipbits=0&fvip=6&dur=0.000&clen=6690781&itag=43&gir=yes&mime=video%2Fwebm&key=yt6&lmt=1529015647285355&ei=bQQqW-WGF8ihgwOLkLSoCA&fexp=23709359&c=WEB&source=youtube&initcwndbps=6678750"
+    var video_link = "http://salty-plains-52394.herokuapp.com/media/video3.mp4"
+    $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
+    var init_var = 0.0
     let minConfidence = 0.5
     let net, result
     var result_list = "none"
@@ -46,11 +48,18 @@
     var max_faces = 100
     var times_list = []
     var results_data = []
-
-    function enablestart() {
+      function enablestart() {
+        //if (document.contains(document.getElementById('startbutton'))) {
+          //document.getElementById('startbutton').value = "PLEASE WAIT - LOADING VIDEO " + "" + ((vid.duration - vid.currentTime)/vid.duration) + "%";
+          //}
+        if (init_var == 0.0) {
+          vid.currentTime = vid.duration - (vid.duration * 0.03)
+          this.init_var += 1.0
+        } else {
+          this.init_var += 1.0
+        }
        onPlay(vid)
       }
-
      async function onPlay(videoEl) {
       if(videoEl.paused || videoEl.ended)
         return false
@@ -70,6 +79,12 @@
         current_time = (Date.now() - ts)
         current_fps = faceapi.round(1000 / (Date.now() - ts))
         current_time_sec = vid.currentTime
+        print_process = parseInt(parseFloat(((vid.duration-(((vid.duration - current_time_sec) / vid.duration)*vid.duration))/vid.duration)*100).toFixed(0))
+        if (print_process < 100) {
+          $('#faces_view').html('<center><h5>Processing video: ' + print_process + '' +'%</h5></center>')
+        }else{
+          $('#faces_view').html('')
+        }
         total_faces_in_frame = Object.keys(result).length
         this.count_faces += total_faces_in_frame
         faces_info = JSON.stringify(result)
@@ -92,6 +107,10 @@
           this.result_list.push("</center></div></h6><br><br>")
           this.video_progress = vid.currentTime
 
+          if (document.contains(document.getElementById('startbutton'))) {
+                document.getElementById('startbutton').remove()
+                $('#results-view').empty()
+              }
 
           $("#results-view").html(result_list)
           $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
