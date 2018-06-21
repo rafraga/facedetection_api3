@@ -65,11 +65,13 @@ var promise2 = $.ajax({
       promise1.done(function(myUrl) {
         Youtube.url = myUrl
         document.getElementById("proceed_button").disabled = false
-      })
-      promise2.done(function(myUrl2) {
-        console.log(myUrl2)
-        console.log(YoutubeThumb.url)
-        $('#youtube_thumb').html("<br><img src='" + YoutubeThumb.url + "'><br><h5>"+ myUrl2 +"</h5>")
+
+        promise2.done(function(myUrl2) {
+          console.log(myUrl2)
+          console.log(YoutubeThumb.url)
+          $('#youtube_thumb').html("<br><img src='" + YoutubeThumb.url + "'><br><h5>"+ myUrl2 +"</h5>")
+        })
+
       })
   }) 
 
