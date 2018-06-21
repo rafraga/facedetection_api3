@@ -30,7 +30,7 @@
   <div id="faces_view">
   </div>
   <script>
-
+  var vid_url = "none"
   var promise = $.ajax({
     url: 'https://you-link.herokuapp.com/?url=' + 'https://www.youtube.com/watch?v=4nOSvpnCFTs',
     method: "GET"
@@ -47,9 +47,8 @@
   
   $(function() {
       promise.done(function(myUrl) {
-        var vid_url = myUrl
+        this.vid_url = myUrl
         document.getElementById("proceed_button").disabled = false;
-        return vid_url
     })
   }) 
 
