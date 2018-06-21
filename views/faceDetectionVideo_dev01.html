@@ -10,6 +10,7 @@
 </head>
 <body>
   <center>
+  <div id='youtube_thumb'></div>
       <button id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h6>START!</h6></button>
   <div id="all">
       <div id="header" style="position:fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;top: 1em">
@@ -30,6 +31,9 @@
   <script>
   
   var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=1zNr8Pf1QkY")
+  var youtube_id = String(user_input_link).split("=")[1]
+  youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
+  $('#youtube_thumb').html("<br><br><br><img src='" + youtube_thumbnail + "'><br>")
   document.getElementById("results-view").style.display = "none"
   var video_link
   var Youtube = {}
