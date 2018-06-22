@@ -58,15 +58,17 @@
           start_time = vid.currentTime
         } else {
           this.times_list.push(parseInt(vid.currentTime))
-          this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>")
-          this.result_list.push("<div style='display:inline-block'><center>")
           
           if (parseInt(total_faces_in_frame) == parseInt(0)){
+           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "</font>")
            this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame))
           } else {
+            this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>")
+          
            this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame+";"+faces_info))  
           }
 
+          this.result_list.push("<div style='display:inline-block'><center>")
           faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
           //faceImages.forEach(function(canvas) {if(count_faces < max_faces){return this.faces.push(canvas)}})
           faceImages.forEach(function(canvas) {return this.faces.push(canvas)})
