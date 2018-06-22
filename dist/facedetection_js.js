@@ -102,6 +102,8 @@ var results_data = []
       $('#spaces2').html("<br><br><br><br><br><br><br><br>")
       $("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
       var total_faces_in_video = count_faces
+      var d = new Date();
+      var n = d.getTime();
 
     $('#download_image_button').click(function() {
 
@@ -115,8 +117,6 @@ var results_data = []
             html2canvas($('#all').get(0)).then(function (canvas) {
               var myImage = canvas.toDataURL()
               var link = document.createElement("a");
-              var d = new Date();
-              var n = d.getTime();
               link.download = "face-squared_" + n + ".png"
               link.href = myImage
               document.body.appendChild(link)
@@ -141,8 +141,6 @@ var results_data = []
 
     $('#download_txt_button').click(function() {
         var element = document.createElement('a');
-        var d = new Date();
-        var n = d.getTime();
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(results_data));
         element.setAttribute('download', "face-squared_" + n + ".txt");
         element.style.display = 'none';
