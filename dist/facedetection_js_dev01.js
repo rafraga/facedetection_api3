@@ -88,7 +88,7 @@
           $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " faces found in video segment (from " + start_time + " to " + end_time + " seconds).</h6></center>")
           $('#spaces').html("<br><br>")
           $('#spaces2').html("<br>")
-          $("#results-view").attr("style","height:100px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
+          $("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
           var total_faces_in_video = count_faces
           console.log(results_data) // results that will go to the database
           console.log(total_faces_in_video) // results that will go to the database
@@ -103,8 +103,7 @@
           //   });
 
 
-            //var divContents = $("#faces_view").html()
-            var divContents = $("#faces_view").html(faces)
+            var divContents = $("#faces_view").html()
             var printWindow = window.open('', '', 'height=400,width=800')
             printWindow.document.write('<html><head><title>Faces</title>')
             printWindow.document.write('</head><body >')
