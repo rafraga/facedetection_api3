@@ -93,7 +93,7 @@
           console.log(results_data) // results that will go to the database
           console.log("total_faces_in_video: " + count_faces) // results that will go to the database
           $('#spaces').html("<br><br>")
-          $('#spaces2').html("<br>")
+          $('#spaces2').html("<br><br><br><br>")
           $("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
           var total_faces_in_video = count_faces
 
