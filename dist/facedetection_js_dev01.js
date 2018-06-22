@@ -100,26 +100,40 @@
           var total_faces_in_video = count_faces
 
         $('#download_image_button').click(function() {
-          document.getElementById("results-view").style.display = "none"
 
-          $("#faces_view").attr("style","height:40px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 100%;text-align: center")
-          $("#faces_view").html(faces)
+          new Promise(function(fulfill, reject){
+            document.getElementById("results-view").style.display = "none"
+            $("#faces_view").attr("style","height:40px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 100%;text-align: center")
+            $("#faces_view").html(faces)
+              fulfill(result);
+          }).then(function(result){
+              return new Promise(function(fulfill, reject){
+                html2canvas($('#all').get(0)).then(function (canvas) {
+                  var myImage = canvas.toDataURL()
+                  var link = document.createElement("a");
+                  var d = new Date();
+                  var n = d.getTime();
+                  link.download = "face-squared_" + n + ".png"
+                  link.href = myImage
+                  document.body.appendChild(link)
+                  link.click()
+                })
+                  fulfill(result);
+              });
+          }).then(function(result){
+              return new Promise(function(fulfill, reject){
+                $("#results-view").html(result_list)
+                $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
+                document.getElementById("results-view").style.display = "block"
+                fulfill(result);
+              });
+          }).then(function(result){
+              //do something with the result
+          });
           
-          html2canvas($('#all').get(0)).then(function (canvas) {
-            var myImage = canvas.toDataURL()
-            var link = document.createElement("a");
-            var d = new Date();
-            var n = d.getTime();
-            link.download = "face-squared_" + n + ".png"
-            link.href = myImage
-            document.body.appendChild(link)
-            link.click()
           })
 
-         $("#results-view").html(result_list)
-         $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
-         document.getElementById("results-view").style.display = "block"
-        })
+
 
         $('#download_txt_button').click(function() {
             var element = document.createElement('a');
