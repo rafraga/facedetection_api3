@@ -100,6 +100,19 @@
           //       link.href = dataUrl;
           //       link.click();
           //   });
+
+
+            //var divContents = $("#faces_view").html()
+            var divContents = $("#faces_view").html(faces)
+            var printWindow = window.open('', '', 'height=400,width=800')
+            printWindow.document.write('<html><head><title>Faces</title>')
+            printWindow.document.write('</head><body >')
+            printWindow.document.write(divContents)
+            printWindow.document.write('</body></html>')
+            printWindow.document.close()
+            printWindow.print()
+       
+
        
         }; 
       return false
