@@ -95,24 +95,32 @@
 
 
         $('#download_image_button').click(function() {
-          document.getElementById("results-view").style.display = "none"
-          $("#faces_view").html(faces)
-          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.7, 0.7);-ms-transform: scale(0.7, 0.7);-webkit-transform: scale(0.7, 0.7);-o-transform: scale(0.7, 0.7);-moz-transform: scale(0.7, 0.7);")
-          $("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
-          
-          html2canvas($('#all').get(0)).then(function (canvas) {
-            var myImage = canvas.toDataURL()
-            var link = document.createElement("a");
-            var d = new Date();
-            var n = d.getTime();
-            link.download = "face-squared_" + n + ".png"
-            link.href = myImage
-            document.body.appendChild(link)
-            link.click()
-          })
-          document.getElementById("results-view").style.display = "block"
-          $("#results-view").html(result_list)
-          $('#results-view').scrollTop($('#results-view')[1].scrollHeight)
+        var promise_display = function(){ 
+              document.getElementById("results-view").style.display = "none"
+              $("#faces_view").html(faces)
+              $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.7, 0.7);-ms-transform: scale(0.7, 0.7);-webkit-transform: scale(0.7, 0.7);-o-transform: scale(0.7, 0.7);-moz-transform: scale(0.7, 0.7);")
+              $("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
+        }
+
+        function print_images() {
+          promise_display.done(
+              html2canvas($('#all').get(0)).then(function (canvas) {
+                var myImage = canvas.toDataURL()
+                var link = document.createElement("a");
+                var d = new Date();
+                var n = d.getTime();
+                link.download = "face-squared_" + n + ".png"
+                link.href = myImage
+                document.body.appendChild(link)
+                link.click()
+              })
+             )
+            }
+
+         print_images()
+         document.getElementById("results-view").style.display = "block"
+         $("#results-view").html(result_list)
+         $('#results-view').scrollTop($('#results-view')[1].scrollHeight)
         })
 
         $('#download_txt_button').click(function() {
