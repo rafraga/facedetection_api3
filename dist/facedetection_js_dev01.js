@@ -105,11 +105,10 @@
           //   });
 
 
-          html2canvas($('#all'), {
-            onrendered: function (canvas) {
-                var img = canvas.toDataURL("image/png")
-                window.open(img);
-            }
+
+          html2canvas($('#all').get(0)).then(function (canvas) {
+            var img = canvas.toDataURL("image/jpeg", 1)
+            window.open(img)
           });
 
           return results_data
