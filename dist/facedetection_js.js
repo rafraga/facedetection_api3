@@ -79,7 +79,7 @@
         }
       } else {
         vid.onplaying = function() {
-          $("#faces_view").attr("style","height:60px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 50%;text-align: center")
+          $("#faces_view").attr("style","height:40px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 50%;text-align: center")
           $("#faces_view").html(faces)
           vid.pause()
           vid.remove()
