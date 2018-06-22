@@ -13,7 +13,7 @@
   <center>
       <div id="header" style="position:fixed;height:10px;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 10em;width: 100%;top: 1em;background-color:white">
         <div id='youtube_thumb'><h6>Loading...</h6></div>
-        <button class="btn" id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h6>START!</h6></button>
+        <button class="waves-effect waves-light btn-small" id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h6><i class='material-icons left"'>play_arrow</i>START!</h6></button>
         <div id="video_div"></div>
         <canvas id="overlay" />
       </div>
@@ -64,7 +64,7 @@
               dataType: "jsonp",
               success: function(data){
                 Youtube.title = data.items[0].snippet.title
-                $('#youtube_thumb').html("<br><h5>" + Youtube.title + "</h5><img src='" + youtube_thumbnail + "'><br><br><br><h6>Please insert a confidence level between 0.1 and 0.9 (from lower to higher, default is 0.6) and press 'Start' to begin!<br><input style='width:2em;top:0;bottom:0;right:0;left:0;margin-right:auto;margin-left:auto' id='confidence' value='0.6'></h6>")
+                $('#youtube_thumb').html("<br><h5>" + Youtube.title + "</h5><img src='" + youtube_thumbnail + "'><br><br><br><h6>Please insert a confidence level between 0.1 and 0.9 (from lower to higher, default is 0.6) and press 'Start' to begin!<br><input class='validate' style='width:2em;top:0;bottom:0;right:0;left:0;margin-right:auto;margin-left:auto' id='confidence' value='0.6'></h6>")
                 document.getElementById("proceed_button").disabled = false
               }});
     })
