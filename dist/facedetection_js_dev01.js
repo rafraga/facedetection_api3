@@ -93,7 +93,8 @@
           vid.remove()
           $('#spaces').html("")
           end_time = current_time_sec
-          $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " faces found in video segment (from " + start_time + " to " + end_time + " seconds).</h6></center>")
+          total_frames_processed = Object.keys(results_data).length
+          $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " total faces found in video segment (from " + start_time + " to " + end_time + " seconds).<br>Total frames processed:" + total_frames_processed + "</h6><button class='btn' id='download_image_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Image'><h6>Download Image</h6></button></center>")
           $('#spaces').html("<br><br>")
           $('#spaces2').html("<br>")
           $("#results-view").remove()
@@ -113,6 +114,7 @@
 
 
 
+        $('download_image_button').click(function() {
           html2canvas($('#all').get(0)).then(function (canvas) {
             var myImage = canvas.toDataURL()
             var link = document.createElement("a");
@@ -122,7 +124,8 @@
             link.href = myImage
             document.body.appendChild(link)
             link.click()
-          });
+          })
+        })
 
           return results_data
         }; 
