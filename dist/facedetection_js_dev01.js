@@ -1,9 +1,6 @@
     $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
     var init_var = 0.0
-    var minConfidence = prompt("Insert a confidence level between 0.1 and 0.9 (from lower to higher)", "0.6")
-    if (minConfidence === null) {
-      minConfidence = 0.6
-    }
+    var minConfidence = Youtube.confidence
     let net, result
     var result_list = "none"
     var vid = document.getElementById('videoel')

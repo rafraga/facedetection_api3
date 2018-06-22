@@ -12,7 +12,7 @@
 <body>
   <center>
       <div id="header" style="position:fixed;height:10px;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 10em;width: 100%;top: 1em;background-color:white">
-        <div id='youtube_thumb'></div>
+        <div id='youtube_thumb'><h6>Loading...</h6></div>
         <button class="btn" id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h6>START!</h6></button>
         <div id="video_div"></div>
         <canvas id="overlay" />
@@ -57,13 +57,13 @@
   $(function() {
       promise.done(function(myUrl) {
         Youtube.url = myUrl
-
         $.ajax({
               url: "https://www.googleapis.com/youtube/v3/videos?id=" + youtube_id + "&key="+ apiKey + "&fields=items(snippet(title))&part=snippet", 
               dataType: "jsonp",
               success: function(data){
                 Youtube.title = data.items[0].snippet.title
-                $('#youtube_thumb').html("<br><h5>" + Youtube.title + "</h5><br><img src='" + youtube_thumbnail + "'><br>")
+                $('#youtube_thumb').html("<br><h5>" + Youtube.title + "</h5><img src='" + youtube_thumbnail + "'><br><h6>Insert a confidence level between 0.1 and 0.9 (from lower to higher):<input id='confidence' value='0.6'></h6>")
+                Youtube.confidence = $('#confidence').val()
                 document.getElementById("proceed_button").disabled = false
               }});
     })
