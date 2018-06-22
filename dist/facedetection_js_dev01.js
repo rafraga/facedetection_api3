@@ -1,7 +1,7 @@
     $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
     var total_frames_processed = 0
     var init_var = 0.0
-    var minConfidence = Youtube.confidence
+    var minConfidence = parseFloat(Youtube.confidence)
     if (!(minConfidence < 1.0 && minConfidence > 0.0)){
       alert("Invalid confidence number - confidence number set to default value (0.6)")
       minConfidence = 0.6
