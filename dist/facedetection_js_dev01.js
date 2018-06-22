@@ -88,7 +88,7 @@
       } else {
         vid.onplaying = function() {
           $("#faces_view").html(faces)
-          $("#faces_view").attr("style","height:100px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center")
+          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center")
           vid.pause()
           vid.remove()
           $('#spaces').html("")
