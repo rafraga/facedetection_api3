@@ -88,7 +88,7 @@
       } else {
         vid.onplaying = function() {
           $("#faces_view").html(faces)
-          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center")
+          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.8, 0.8);-ms-transform: scale(0.8, 0.8);-webkit-transform: scale(0.8, 0.8);-o-transform: scale(0.8, 0.8);-moz-transform: scale(0.8, 0.8);")
           vid.pause()
           vid.remove()
           $('#spaces').html("")
