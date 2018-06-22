@@ -37,8 +37,6 @@
         $('#time').val(`${(Date.now() - ts)} ms`)
         $('#fps').val(`${faceapi.round(1000 / (Date.now() - ts))}`)
 
-        current_time = (Date.now() - ts)
-        current_fps = faceapi.round(1000 / (Date.now() - ts))
         current_time_sec = vid.currentTime
         print_process = parseInt(parseFloat(((vid.duration-(((vid.duration - current_time_sec) / vid.duration)*vid.duration))/vid.duration)*100).toFixed(0))
         if (print_process < 100) {
@@ -61,12 +59,12 @@
           this.times_list.push(parseInt(vid.currentTime))
           
           if (parseInt(total_faces_in_frame) == parseInt(0)){
-           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "</font>")
-           this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame +"\n"))
+           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "</font>")
+           this.results_data.push(("video_time:"+current_time_sec+";faces_in_frame:"+total_faces_in_frame +"\\n"))
           } else {
-            this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>")
+            this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>")
           
-           this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame+";"+faces_info +"\n"))  
+           this.results_data.push(("video_time:"+current_time_sec+";faces_in_frame:"+total_faces_in_frame+";"+faces_info +"\\n"))  
           }
           total_frames_processed += 1
 
