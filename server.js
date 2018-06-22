@@ -1,3 +1,4 @@
+const html2canvas = require('html2canvas')
 const express = require('express')
 const path = require('path')
 
