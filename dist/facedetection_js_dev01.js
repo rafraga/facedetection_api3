@@ -34,7 +34,7 @@
 
         const ts = Date.now()
         result = await net.locateFaces(input, minConfidence) 
-        console.log(minConfidence)
+        //console.log(minConfidence)
         $('#time').val(`${(Date.now() - ts)} ms`)
         $('#fps').val(`${faceapi.round(1000 / (Date.now() - ts))}`)
 
@@ -91,7 +91,7 @@
           $('#results-view').scrollTop($('#results-view')[0].scrollHeight)
           $('#spaces').html("")
           end_time = current_time_sec
-          $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " total faces found in video segment (from " + start_time + " to " + end_time + " seconds).<br>Total frames processed:" + total_frames_processed + "</h6><button class='btn' id='download_txt_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Data'><h6>Download Data</h6></button>&nbsp;&nbsp;<button class='btn' id='download_image_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Faces'><h6>Download Faces</h6></button></center>")
+          $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " total faces found in video segment (from " + start_time + " to " + end_time + " seconds).<br>Total images processed:" + total_frames_processed + "</h6><button class='btn' id='download_txt_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Data'><h6>Download Data</h6></button>&nbsp;&nbsp;<button class='btn' id='download_image_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Faces'><h6>Download Faces</h6></button></center>")
           console.log(results_data) // results that will go to the database
           console.log("total_faces_in_video: " + count_faces) // results that will go to the database
           $('#spaces').html("<br><br>")
@@ -103,7 +103,7 @@
 
           new Promise(function(fulfill, reject){
             document.getElementById("results-view").style.display = "none"
-            $("#faces_view").attr("style","height:40px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 100%;text-align: center")
+            $("#faces_view").attr("style","height:40px;width:700px;background-color:white;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 100%;text-align: center")
             $("#faces_view").html(faces)
               fulfill(result);
           }).then(function(result){
