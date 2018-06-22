@@ -88,15 +88,15 @@
       } else {
         vid.onplaying = function() {
           $("#faces_view").html(faces)
-          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.8, 0.8);-ms-transform: scale(0.8, 0.8);-webkit-transform: scale(0.8, 0.8);-o-transform: scale(0.8, 0.8);-moz-transform: scale(0.8, 0.8);")
+          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.3, 0.3);-ms-transform: scale(0.3, 0.3);-webkit-transform: scale(0.3, 0.3);-o-transform: scale(0.3, 0.3);-moz-transform: scale(0.3, 0.3);")
           vid.pause()
           vid.remove()
           $('#spaces').html("")
           end_time = current_time_sec
           total_frames_processed = Object.keys(results_data).length
           $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " total faces found in video segment (from " + start_time + " to " + end_time + " seconds).<br>Total frames processed:" + total_frames_processed + "</h6><button class='btn' id='download_image_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Faces'><h6>Download Faces</h6></button></center>")
-          $('#spaces').html("<br><br>")
-          $('#spaces2').html("<br>")
+          //$('#spaces').html("<br><br>")
+          //$('#spaces2').html("<br>")
           $("#results-view").remove()
           //$("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
           var total_faces_in_video = count_faces
