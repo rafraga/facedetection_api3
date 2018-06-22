@@ -3,6 +3,7 @@
     var init_var = 0.0
     var minConfidence = Youtube.confidence
     if (!(minConfidence < 1.0 && minConfidence > 0.0)){
+      alert("Invalid confidence number - confidence number set to default value (0.6)")
       minConfidence = 0.6
     }  
     let net, result
