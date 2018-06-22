@@ -11,13 +11,11 @@
 </head>
 <body>
   <center>
-      <button class="btn" id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h6>START!</h6></button>
-      <div id='youtube_thumb'></div>
-  </center>
-  <center>
   <div id="all">
-      <div id="header" style="position:fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 100%;top: 1em>
-      <div id="video_div"></div>
+      <div id="header" style="position:fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 100%;top: 1em;background-color:#eee">
+        <button class="btn" id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h6>START!</h6></button>
+        <div id='youtube_thumb'></div>
+        <div id="video_div"></div>
         <canvas id="overlay" />
       </div>
       <div id="spaces">
@@ -71,10 +69,10 @@
       var proxy = 'https://cors-anywhere.herokuapp.com/'
       this.video_link = proxy + Youtube.url
       $('#start_button').empty()
-      var head= document.getElementsByTagName('head')[0]
-      var script= document.createElement('script')
-      script.type= 'text/javascript'
-      script.src= script_url
+      var head = document.getElementsByTagName('head')[0]
+      var script = document.createElement('script')
+      script.type = 'text/javascript'
+      script.src = script_url
       head.appendChild(script)}
   </script>
 </body>
