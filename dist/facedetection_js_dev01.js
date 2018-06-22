@@ -64,7 +64,7 @@
           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>")
           this.result_list.push("<div style='display:inline-block'><center>")
           
-          if (ParseInt(total_faces_in_frame) == ParseInt(0)){
+          if (parseInt(total_faces_in_frame) == parseInt(0)){
            this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame))
           } else {
            this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame+";"+faces_info))  
