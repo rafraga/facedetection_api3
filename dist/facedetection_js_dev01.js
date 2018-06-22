@@ -107,8 +107,13 @@
 
 
           html2canvas($('#all').get(0)).then(function (canvas) {
-            var img = canvas.toDataURL("image/jpeg", 1)
-            window.open(img)
+            var myImage = canvas.toDataURL()
+            var link = document.createElement("a");
+            link.download = "faces.png"
+            link.href = myImage
+            document.body.appendChild(link)
+            link.click()
+            clearDynamicLink(link)
           });
 
           return results_data
