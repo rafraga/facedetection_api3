@@ -24,9 +24,9 @@
       <br><br>
       <div style="height:120px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br></div>
     <div id="all">
-    <div id="spaces2"></div>
-    <div id="faces_view"></div>
-  </div>
+      <div id="spaces2"></div>
+      <div id="faces_view"></div>
+    </div>
   </center>
   <script>
   var default_youtube_link = "https://www.youtube.com/watch?v=8HlqSrCazqo"
@@ -64,7 +64,7 @@
               dataType: "jsonp",
               success: function(data){
                 Youtube.title = data.items[0].snippet.title
-                $('#youtube_thumb').html("<br><h5>" + Youtube.title + "</h5><img src='" + youtube_thumbnail + "'><br><br><br><h6>Please insert a confidence level between 0.1 and 0.9 (from lower to higher, default is 0.6) and press 'Start' to begin!<br><input style='width:2em' id='confidence' value='0.6'></h6>")
+                $('#youtube_thumb').html("<br><h5>" + Youtube.title + "</h5><img src='" + youtube_thumbnail + "'><br><br><br><h6>Please insert a confidence level between 0.1 and 0.9 (from lower to higher, default is 0.6) and press 'Start' to begin!<br><input style='width:2em;top:0;bottom:0;right:0;left:0;margin-right:auto;margin-left:auto' id='confidence' value='0.6'></h6>")
                 Youtube.confidence = $('#confidence').val()
                 document.getElementById("proceed_button").disabled = false
               }});
