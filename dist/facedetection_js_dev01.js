@@ -100,7 +100,7 @@
         $('#download_image_button').click(function() {
           document.getElementById("results-view").style.display = "none"
 
-          $("#faces_view").attr("style","height:40px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 50%;text-align: center")
+          $("#faces_view").attr("style","height:40px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 100%;text-align: center")
           $("#faces_view").html(faces)
           
           html2canvas($('#all').get(0)).then(function (canvas) {
