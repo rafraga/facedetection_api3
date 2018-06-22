@@ -38,7 +38,6 @@
   if (user_input_link === null) {
     user_input_link = default_youtube_link
   }
-  console.log(user_input_link)
   var youtube_id = String(user_input_link).split("=")[1]
   var youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
   document.getElementById("results-view").style.display = "none"
@@ -52,7 +51,6 @@
     for(var i in response){
       if(String(response[i].type).split(";")[0] == "video\/mp4"){
         if(String(response[i].quality).split(";")[0] == "medium"){
-          //console.log(response[i].url)
           return response[i].url
         }
       }
