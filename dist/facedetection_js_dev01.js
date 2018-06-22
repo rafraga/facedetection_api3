@@ -112,7 +112,7 @@
 
 
         $('#download_image_button').click(function() {
-          document.getElementById("results-view").style.display = "none"
+          document.getElementById("download_image_button").style.display = "none"
           html2canvas($('#all').get(0)).then(function (canvas) {
             var myImage = canvas.toDataURL()
             var link = document.createElement("a");
@@ -123,7 +123,7 @@
             document.body.appendChild(link)
             link.click()
           })
-          document.getElementById("results-view").style.display = "block"
+          document.getElementById("download_image_button").style.display = "block"
         })
 
           return results_data
