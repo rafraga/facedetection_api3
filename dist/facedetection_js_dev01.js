@@ -92,33 +92,27 @@
           $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " total faces found in video segment (from " + start_time + " to " + end_time + " seconds).<br>Total frames processed:" + total_frames_processed + "</h6><button class='btn' id='download_txt_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Data'><h6>Download Data</h6></button>&nbsp;&nbsp;<button class='btn' id='download_image_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Faces'><h6>Download Faces</h6></button></center>")
           console.log(results_data) // results that will go to the database
           console.log("total_faces_in_video: " + count_faces) // results that will go to the database
+          $("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
+          
 
 
         $('#download_image_button').click(function() {
-        var promise_display = function(){ 
-              document.getElementById("results-view").style.display = "none"
-              $("#faces_view").html(faces)
-              $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.7, 0.7);-ms-transform: scale(0.7, 0.7);-webkit-transform: scale(0.7, 0.7);-o-transform: scale(0.7, 0.7);-moz-transform: scale(0.7, 0.7);")
-              $("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
-        }
-
-        function print_images() {
-          promise_display.done(
-              html2canvas($('#all').get(0)).then(function (canvas) {
-                var myImage = canvas.toDataURL()
-                var link = document.createElement("a");
-                var d = new Date();
-                var n = d.getTime();
-                link.download = "face-squared_" + n + ".png"
-                link.href = myImage
-                document.body.appendChild(link)
-                link.click()
-              })
-             )
-            }
-
-         print_images()
+          document.getElementById("results-view").style.display = "none"
+          $("#results-view").empty()
+          $("#faces_view").html(faces)
+          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.7, 0.7);-ms-transform: scale(0.7, 0.7);-webkit-transform: scale(0.7, 0.7);-o-transform: scale(0.7, 0.7);-moz-transform: scale(0.7, 0.7);")
+          html2canvas($('#all').get(0)).then(function (canvas) {
+            var myImage = canvas.toDataURL()
+            var link = document.createElement("a");
+            var d = new Date();
+            var n = d.getTime();
+            link.download = "face-squared_" + n + ".png"
+            link.href = myImage
+            document.body.appendChild(link)
+            link.click()
+          })
          document.getElementById("results-view").style.display = "block"
+         $("#faces_view").empty()
          $("#results-view").html(result_list)
          $('#results-view').scrollTop($('#results-view')[1].scrollHeight)
         })
