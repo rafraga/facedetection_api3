@@ -85,7 +85,7 @@
       } else {
         vid.onplaying = function() {
           $("#faces_view").html(faces)
-          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.3, 0.3);-ms-transform: scale(0.3, 0.3);-webkit-transform: scale(0.3, 0.3);-o-transform: scale(0.3, 0.3);-moz-transform: scale(0.3, 0.3);")
+          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.6, 0.6);-ms-transform: scale(0.6, 0.6);-webkit-transform: scale(0.6, 0.6);-o-transform: scale(0.6, 0.6);-moz-transform: scale(0.6, 0.6);")
           vid.pause()
           vid.remove()
           $('#spaces').html("")
@@ -124,7 +124,7 @@
             link.click()
           })
           document.getElementById("results-view").style.display = "block"
-          document.getElementById("download_image_button").style.display = "block"
+          //document.getElementById("download_image_button").style.display = "block"
         })
 
           return results_data
