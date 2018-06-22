@@ -61,11 +61,11 @@
           
           if (parseInt(total_faces_in_frame) == parseInt(0)){
            this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "</font>")
-           this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame))
+           this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame +"\n"))
           } else {
             this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>")
           
-           this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame+";"+faces_info))  
+           this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame+";"+faces_info +"\n"))  
           }
 
           this.result_list.push("<div style='display:inline-block'><center>")
@@ -87,7 +87,7 @@
       } else {
         vid.onplaying = function() {
           $("#faces_view").html(faces)
-          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.6, 0.6);-ms-transform: scale(0.6, 0.6);-webkit-transform: scale(0.6, 0.6);-o-transform: scale(0.6, 0.6);-moz-transform: scale(0.6, 0.6);")
+          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.7, 0.7);-ms-transform: scale(0.7, 0.7);-webkit-transform: scale(0.7, 0.7);-o-transform: scale(0.7, 0.7);-moz-transform: scale(0.7, 0.7);")
           vid.pause()
           vid.remove()
           end_time = current_time_sec
@@ -102,7 +102,6 @@
 
         $('#download_image_button').click(function() {
           document.getElementById("results-view").style.display = "none"
-          document.getElementById("download_image_button").style.display = "none"
           html2canvas($('#all').get(0)).then(function (canvas) {
             var myImage = canvas.toDataURL()
             var link = document.createElement("a");
@@ -114,7 +113,6 @@
             link.click()
           })
           document.getElementById("results-view").style.display = "block"
-          document.getElementById("download_image_button").style.display = "block"
         })
 
         $('#download_txt_button').click(function() {
