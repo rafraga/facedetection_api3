@@ -29,10 +29,12 @@
   </div>
   </center>
   <script>
+  var default_youtube_link = "https://www.youtube.com/watch?v=8HlqSrCazqo"
+  //var default_youtube_link = "https://www.youtube.com/watch?v=G5XHTPRqRfM"
   var apiKey = "AIzaSyCuYYszyFQE2cnSB8jQfDnYUhMAcH5LQyg"
-  var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=G5XHTPRqRfM")
+  var user_input_link = prompt("Please insert a YouTube link", default_youtube_link)
   if (user_input_link === null) {
-    user_input_link = "https://www.youtube.com/watch?v=G5XHTPRqRfM"
+    user_input_link = default_youtube_link
   }
   var youtube_id = String(user_input_link).split("=")[1]
   var youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
