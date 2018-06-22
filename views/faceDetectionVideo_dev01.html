@@ -74,6 +74,7 @@
   }) 
 
   function loadScript(script_url){
+      Youtube.confidence = $('#confidence').val()
       $('#youtube_thumb').remove()
       $('#proceed_button').remove()
       $('#loading_div').html("<input style='position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0;background-color:gray' class='btn' type='button' value='PLEASE WAIT - LOADING VIDEO' disabled='disabled' id='startbutton'></input>")
