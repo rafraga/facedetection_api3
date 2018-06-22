@@ -68,6 +68,7 @@
               success: function(data){
                 Youtube.title = data.items[0].snippet.title
                 document.getElementById("proceed_button").disabled = false
+                $('#youtube_thumb').remove()
               }});
     })
   }) 
@@ -75,7 +76,6 @@
   function loadScript(script_url){
       $('#youtube_thumb').html("<br><h5>" + Youtube.title + "</h5><img src='" + youtube_thumbnail + "'><br><br><br><h6>Please insert a confidence level between 0.1 and 0.9 (from lower to higher) and press 'Start' to begin!<br><input class='validate' style='width:2em;top:0;bottom:0;right:0;left:0;margin-right:auto;margin-left:auto' id='confidence' value='0.6'></h6>")
       $('#proceed_button').remove()
-      $('#youtube_thumb').remove()
       $('#loading_div').html("<input style='position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0;background-color:gray' class='btn' type='button' value='PLEASE WAIT - LOADING VIDEO' disabled='disabled' id='startbutton'></input>")
       document.getElementById("results-view").style.display = "block"
       var proxy = 'https://cors-anywhere.herokuapp.com/'
