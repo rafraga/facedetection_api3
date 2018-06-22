@@ -70,7 +70,6 @@
 
           this.result_list.push("<div style='display:inline-block'><center>")
           faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
-          //faceImages.forEach(function(canvas) {if(count_faces < max_faces){return this.faces.push(canvas)}})
           faceImages.forEach(function(canvas) {return this.faces.push(canvas)})
           this.result_list.push("</center></div></h6><br><br>")
           this.video_progress = vid.currentTime
@@ -86,22 +85,21 @@
         }
       } else {
         vid.onplaying = function() {
-          $("#faces_view").html(faces)
-          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.7, 0.7);-ms-transform: scale(0.7, 0.7);-webkit-transform: scale(0.7, 0.7);-o-transform: scale(0.7, 0.7);-moz-transform: scale(0.7, 0.7);")
           vid.pause()
           vid.remove()
           end_time = current_time_sec
           total_frames_processed = Object.keys(results_data).length
           $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " total faces found in video segment (from " + start_time + " to " + end_time + " seconds).<br>Total frames processed:" + total_frames_processed + "</h6><button class='btn' id='download_txt_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Data'><h6>Download Data</h6></button>&nbsp;&nbsp;<button class='btn' id='download_image_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Faces'><h6>Download Faces</h6></button></center>")
-          $('#spaces').remove()
-          $("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
-          var total_faces_in_video = count_faces
           console.log(results_data) // results that will go to the database
-          console.log("total_faces_in_video: " + total_faces_in_video) // results that will go to the database
+          console.log("total_faces_in_video: " + count_faces) // results that will go to the database
 
 
         $('#download_image_button').click(function() {
           document.getElementById("results-view").style.display = "none"
+          $("#faces_view").html(faces)
+          $("#faces_view").attr("style","height:80%px;width:100%;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;text-align: center; transform: scale(0.7, 0.7);-ms-transform: scale(0.7, 0.7);-webkit-transform: scale(0.7, 0.7);-o-transform: scale(0.7, 0.7);-moz-transform: scale(0.7, 0.7);")
+          $("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
+          
           html2canvas($('#all').get(0)).then(function (canvas) {
             var myImage = canvas.toDataURL()
             var link = document.createElement("a");
@@ -113,6 +111,8 @@
             link.click()
           })
           document.getElementById("results-view").style.display = "block"
+          $("#results-view").html(result_list)
+          $('#results-view').scrollTop($('#results-view')[1].scrollHeight)
         })
 
         $('#download_txt_button').click(function() {
