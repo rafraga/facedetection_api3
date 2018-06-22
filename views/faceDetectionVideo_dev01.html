@@ -77,7 +77,7 @@
       $('#proceed_button').remove()
       $('#youtube_thumb').remove()
       Youtube.confidence = $('#confidence').val()
-      $('#loading_div').html("<input style='position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0' class='btn' type='button' value='PLEASE WAIT - LOADING VIDEO' disabled='disabled' id='startbutton'></input>")
+      $('#loading_div').html("<input style='position: fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;height:100%;width:100%;top:0;bottom:0;background-color:gray' class='btn' type='button' value='PLEASE WAIT - LOADING VIDEO' disabled='disabled' id='startbutton'></input>")
       document.getElementById("results-view").style.display = "block"
       var proxy = 'https://cors-anywhere.herokuapp.com/'
       this.video_link = proxy + Youtube.url
