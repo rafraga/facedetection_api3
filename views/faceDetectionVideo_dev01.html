@@ -12,8 +12,8 @@
 <body>
   <center>
       <div id="header" style="position:fixed;height:10px;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 10em;width: 100%;top: 1em;background-color:white">
-        <button class="btn" id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h6>START!</h6></button>
         <div id='youtube_thumb'></div>
+        <button class="btn" id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h6>START!</h6></button>
         <div id="video_div"></div>
         <canvas id="overlay" />
       </div>
@@ -29,13 +29,13 @@
   </div>
   </center>
   <script>
+  var apiKey = "AIzaSyCuYYszyFQE2cnSB8jQfDnYUhMAcH5LQyg"
   var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=G5XHTPRqRfM")
   if (user_input_link === null) {
     user_input_link = "https://www.youtube.com/watch?v=G5XHTPRqRfM"
   }
   var youtube_id = String(user_input_link).split("=")[1]
-  youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
-  $('#youtube_thumb').html("<br><img src='" + youtube_thumbnail + "'><br>")
+  var youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
   document.getElementById("results-view").style.display = "none"
   var video_link
   var Youtube = {}
@@ -57,7 +57,15 @@
   $(function() {
       promise.done(function(myUrl) {
         Youtube.url = myUrl
-        document.getElementById("proceed_button").disabled = false
+
+        $.ajax({
+              url: "https://www.googleapis.com/youtube/v3/videos?id=" + youtube_id + "&key="+ apiKey + "&fields=items(snippet(title))&part=snippet", 
+              dataType: "jsonp",
+              success: function(data){
+                Youtube.title = data.items[0].snippet.title
+                $('#youtube_thumb').html("<br><h5>" + Youtube.title + "</h5><br><img src='" + youtube_thumbnail + "'><br>")
+                document.getElementById("proceed_button").disabled = false
+              }});
     })
   }) 
 
