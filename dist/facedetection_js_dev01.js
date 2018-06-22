@@ -2,7 +2,7 @@
     var total_frames_processed = 0
     var init_var = 0.0
     var minConfidence = Youtube.confidence
-    if (minConfidence > 1.0 || minConfidence < 0.0){
+    if (!(minConfidence < 1.0 || minConfidence > 0.0)){
       minConfidence = 0.6
     }
     let net, result
