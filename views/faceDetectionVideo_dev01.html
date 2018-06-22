@@ -13,7 +13,9 @@
   <center>
       <button class="btn" id="proceed_button" style="position: center;right: 0;left: 0;margin-right: auto;margin-left: auto" onclick="loadScript('facedetection_js_dev01.js');" value="Proceed" disabled='disabled'><h6>START!</h6></button>
       <div id='youtube_thumb'></div>
-      <div id="all">
+  </center>
+  <center>
+  <div id="all">
       <div id="header" style="position:fixed;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;top: 1em">
       <div id="video_div"></div>
         <canvas id="overlay" />
@@ -24,13 +26,11 @@
       <div id="loading_div"></div>
       <br><br>
       <div style="height:120px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left" id="results-view"><br><br><br></div>
+    <div id="spaces2"></div>
+    <div id="faces_view"></div>
   </div>
   </center>
-  <div id="spaces2"></div>
-  <div id="faces_view">
-  </div>
   <script>
-  
   var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=G5XHTPRqRfM")
   if (user_input_link === null) {
     user_input_link = "https://www.youtube.com/watch?v=G5XHTPRqRfM"

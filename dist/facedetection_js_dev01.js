@@ -105,14 +105,14 @@
           //   });
 
 
-          html2canvas(document.querySelector("#faces_view")).then(canvas => {
-            document.body.appendChild(canvas)
+          html2canvas($('#all'), {
+            onrendered: function (canvas) {
+                var img = canvas.toDataURL("image/png")
+                window.open(img);
+            }
           });
-          
-          return results_data
-       
 
-       
+          return results_data
         }; 
       return false
       }
