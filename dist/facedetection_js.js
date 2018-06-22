@@ -1,7 +1,9 @@
     $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
     var init_var = 0.0
-    let minConfidence = prompt("Insert a confidence level between 0.1 and 0.9 (from lower to higher)", "0.6")
-    //let minConfidence = 0.6
+    var minConfidence = prompt("Insert a confidence level between 0.1 and 0.9 (from lower to higher)", "0.6")
+    if (minConfidence === null) {
+      minConfidence = 0.6
+    }
     let net, result
     var result_list = "none"
     var vid = document.getElementById('videoel')
@@ -93,7 +95,7 @@
           console.log(results_data) // results that will go to the database
           console.log("total_faces_in_video: " + total_faces_in_video) // results that will go to the database
           return results_data
-          
+
           // //save something in the dom to a file
           // domtoimage.toJpeg(document.getElementById('faces_view'), { quality: 0.95 })
           //   .then(function (dataUrl) {

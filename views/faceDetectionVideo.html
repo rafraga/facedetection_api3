@@ -31,6 +31,9 @@
   <script>
   
   var user_input_link = prompt("Please insert a YouTube link", "https://www.youtube.com/watch?v=8HlqSrCazqo")
+  if (user_input_link === null) {
+    user_input_link = "https://www.youtube.com/watch?v=8HlqSrCazqo"
+  }
   var youtube_id = String(user_input_link).split("=")[1]
   youtube_thumbnail = "https://i1.ytimg.com/vi/" + youtube_id + "/default.jpg"
   $('#youtube_thumb').html("<br><img src='" + youtube_thumbnail + "'><br>")
@@ -45,7 +48,6 @@
     for(var i in response){
       if(String(response[i].type).split(";")[0] == "video\/mp4"){
         if(String(response[i].quality).split(";")[0] == "medium"){
-          //console.log(response[i].url)
           return response[i].url
         }
       }
