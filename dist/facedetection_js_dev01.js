@@ -1,4 +1,5 @@
     $('#video_div').html("<video id='videoel' crossorigin='anonymous' src='" + video_link + "' +  oncanplay='enablestart()' preload='auto' loop playsinline autoplay muted width='250'></video>")
+    var total_frames_processed = 0
     var init_var = 0.0
     var minConfidence = Youtube.confidence
     let net, result
@@ -67,6 +68,7 @@
           
            this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame+";"+faces_info +"\n"))  
           }
+          total_frames_processed += 1
 
           this.result_list.push("<div style='display:inline-block'><center>")
           faceImages.forEach(function(canvas) {return this.result_list.push(canvas)})
