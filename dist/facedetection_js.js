@@ -95,16 +95,6 @@
           console.log(results_data) // results that will go to the database
           console.log("total_faces_in_video: " + total_faces_in_video) // results that will go to the database
           return results_data
-
-          // //save something in the dom to a file
-          // domtoimage.toJpeg(document.getElementById('faces_view'), { quality: 0.95 })
-          //   .then(function (dataUrl) {
-          //       var link = document.createElement('a');
-          //       link.download = 'image.jpeg';
-          //       link.href = dataUrl;
-          //       link.click();
-          //   });
-       
         }; 
       return false
       }
