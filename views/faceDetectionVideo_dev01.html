@@ -9,7 +9,7 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script> -->
   <script type="text/javascript" src="html2canvas.js"></script>
 </head>
 <body>
@@ -35,7 +35,7 @@
   //var default_youtube_link = "https://www.youtube.com/watch?v=8HlqSrCazqo"
   var default_youtube_link = "https://www.youtube.com/watch?v=G5XHTPRqRfM"
   var apiKey = "AIzaSyCuYYszyFQE2cnSB8jQfDnYUhMAcH5LQyg"
-  var user_input_link = bootbox.prompt({title: "Please insert a YouTube link",value: default_youtube_link,callback: function(result) {return result}})
+  var user_input_link = prompt("Please insert a YouTube link", default_youtube_link)
   if (user_input_link === null) {
     user_input_link = default_youtube_link
   }
