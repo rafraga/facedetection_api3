@@ -64,7 +64,7 @@
           this.result_list.push("<font size='2'><h6><b>Video time (sec):</b> " + current_time_sec + "<br><b>Frame #:</b> " + current_fps + "<br><b>Faces in the frame:</b> " + total_faces_in_frame + "<br><b>Faces info:</b> " + faces_info + "</font>")
           this.result_list.push("<div style='display:inline-block'><center>")
           
-          if (total_faces_in_frame == 0){
+          if (ParseInt(total_faces_in_frame) == ParseInt(0)){
            this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame))
           } else {
            this.results_data.push(("video_time:"+current_time_sec+";frame_num:"+current_fps+";faces_in_frame:"+total_faces_in_frame+";"+faces_info))  
@@ -96,7 +96,7 @@
           $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " faces found in video segment (from " + start_time + " to " + end_time + " seconds).</h6></center>")
           $('#spaces').html("<br><br>")
           $('#spaces2').html("<br>")
-          $("#results-view").empty()
+          $("#results-view").remove()
           //$("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
           var total_faces_in_video = count_faces
           console.log(results_data) // results that will go to the database
