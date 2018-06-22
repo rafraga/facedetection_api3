@@ -92,22 +92,12 @@
           vid.remove()
           end_time = current_time_sec
           total_frames_processed = Object.keys(results_data).length
-          $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " total faces found in video segment (from " + start_time + " to " + end_time + " seconds).<br>Total frames processed:" + total_frames_processed + "</h6><button class='btn' id='download_image_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Faces'><h6>Download Faces</h6></button></center>")
+          $('#header').html("<center><h5>Results</h5><h6>" + count_faces + " total faces found in video segment (from " + start_time + " to " + end_time + " seconds).<br>Total frames processed:" + total_frames_processed + "</h6><button class='btn' id='download_txt_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Data'><h6>Download Data</h6></button><button class='btn' id='download_image_button' style='position: center;right: 0;left: 0;margin-right: auto;margin-left: auto' value='Download Faces'><h6>Download Faces</h6></button></center>")
           $('#spaces2').remove()
           $("#results-view").attr("style","height:50px;width:700px;background-color:#eee;overflow-y:scroll;overflow-x:hidden;right: 0;left: 0;margin-right: auto;margin-left: auto;min-height: 20em;width: 90%;text-align: left")    
           var total_faces_in_video = count_faces
           console.log(results_data) // results that will go to the database
           console.log("total_faces_in_video: " + total_faces_in_video) // results that will go to the database
-
-          // //save something in the dom to a file
-          // domtoimage.toJpeg(document.getElementById('faces_view'), { quality: 0.95 })
-          //   .then(function (dataUrl) {
-          //       var link = document.createElement('a');
-          //       link.download = 'image.jpeg';
-          //       link.href = dataUrl;
-          //       link.click();
-          //   });
-
 
 
         $('#download_image_button').click(function() {
@@ -125,6 +115,16 @@
           })
           document.getElementById("results-view").style.display = "block"
           document.getElementById("download_image_button").style.display = "block"
+        })
+
+        $('#download_txt_button').click(function() {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(results_data));
+            element.setAttribute('download', "face-squared_" + n + ".txt");
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
         })
 
           return results_data
